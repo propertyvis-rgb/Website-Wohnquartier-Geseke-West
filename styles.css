@@ -75,7 +75,7 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
   isolation: isolate;
 }
 .hero-slider { position: absolute; inset: 0; z-index: -2; border-radius: 0; }
-.hero-slider .slide img { height: 100%; object-fit: cover; }
+.hero-slider .slide img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .hero::after {
   position: absolute;
   inset: 0;
@@ -170,16 +170,18 @@ h4 { margin: 0 0 16px; font-size: 21px; }
 .section-heading { max-width: 760px; margin-bottom: 34px; }
 .section-heading p:not(.section-kicker) { font-size: 18px; }
 
-.amenity-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; align-items: stretch; }
+.amenity-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 22px; align-items: stretch; }
 .amenity-card {
   position: relative;
-  min-height: 390px;
+  grid-column: span 2;
+  min-height: 430px;
   overflow: hidden;
   border-radius: var(--radius);
   background: #171a18;
   box-shadow: var(--shadow-soft);
 }
-.amenity-card img { width: 100%; height: 100%; min-height: 390px; object-fit: cover; filter: saturate(.92) contrast(.98); transition: transform .5s ease; }
+.amenity-card:nth-child(n+4) { grid-column: span 3; }
+.amenity-card img { width: 100%; height: 100%; min-height: 430px; object-fit: cover; filter: saturate(.96) contrast(.99); transition: transform .5s ease; }
 .amenity-card::after { position: absolute; inset: 0; content: ""; background: linear-gradient(180deg, rgba(0,0,0,.04) 22%, rgba(0,0,0,.78) 100%); }
 .amenity-card div { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; display: grid; align-content: end; min-height: 210px; padding: 24px; color: #fff; }
 .amenity-card svg { color: #fff; width: 26px; height: 26px; margin-bottom: 12px; }
@@ -394,7 +396,8 @@ figcaption { padding: 12px 14px; color: var(--muted); font-size: 14px; font-weig
     box-shadow: var(--shadow);
   }
   .quick-facts, .advisor-grid { grid-template-columns: repeat(2, 1fr); }
-  .amenity-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .amenity-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .amenity-card, .amenity-card:nth-child(n+4) { grid-column: auto; }
   .plan-pair, .interior-gallery { grid-template-columns: repeat(2, 1fr); }
   .type-card, .type-card:nth-child(even) { grid-template-columns: 1fr; }
   .type-card:nth-child(even) .type-gallery { order: 0; }
@@ -417,6 +420,7 @@ figcaption { padding: 12px 14px; color: var(--muted); font-size: 14px; font-weig
   .hero-slider .slider-arrow { top: auto; bottom: 42px; }
   .quick-facts, .proximity, .advisor-grid, .split { grid-template-columns: 1fr; }
   .amenity-grid { grid-template-columns: 1fr; }
+  .amenity-card, .amenity-card:nth-child(n+4) { grid-column: auto; }
   .quick-facts { margin-top: 0; padding: 0; }
   .quick-facts article { min-height: 116px; }
   .section, .contact-section { padding-left: 20px; padding-right: 20px; }
