@@ -73,8 +73,9 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
   padding: 136px clamp(20px, 6vw, 76px) 82px;
   overflow: hidden;
   isolation: isolate;
+  background: #161817 url("assets/images/hero-exterior.jpg") center / cover no-repeat;
 }
-.hero-slider { position: absolute; inset: 0; z-index: 0; border-radius: 0; }
+.hero-slider { position: absolute; inset: 0; z-index: 0; border-radius: 0; background: transparent; }
 .hero-slider .slide img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .hero::after {
   position: absolute;
