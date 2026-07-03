@@ -74,18 +74,19 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
   overflow: hidden;
   isolation: isolate;
 }
-.hero-slider { position: absolute; inset: 0; z-index: -2; border-radius: 0; }
+.hero-slider { position: absolute; inset: 0; z-index: 0; border-radius: 0; }
 .hero-slider .slide img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .hero::after {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 1;
+  pointer-events: none;
   content: "";
   background:
     linear-gradient(90deg, rgba(18, 22, 20, .78) 0%, rgba(31, 38, 32, .58) 42%, rgba(31, 38, 32, .18) 72%, rgba(15, 18, 16, .34) 100%),
     linear-gradient(180deg, rgba(0, 0, 0, .08) 58%, rgba(244, 241, 232, .72) 100%);
 }
-.hero-content { width: min(690px, 100%); color: var(--white); text-shadow: 0 2px 24px rgba(0, 0, 0, .28); }
+.hero-content { position: relative; z-index: 2; width: min(690px, 100%); color: var(--white); text-shadow: 0 2px 24px rgba(0, 0, 0, .28); }
 .eyebrow, .section-kicker { margin: 0 0 14px; color: var(--red); font-size: 13px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
 .hero .eyebrow { color: #fff; }
 h1, h2, h3, h4, p { margin-top: 0; }
@@ -181,7 +182,12 @@ h4 { margin: 0 0 16px; font-size: 21px; }
   box-shadow: var(--shadow-soft);
 }
 .amenity-card:nth-child(n+4) { grid-column: span 3; }
-.amenity-card img { width: 100%; height: 100%; min-height: 430px; object-fit: cover; filter: saturate(.96) contrast(.99); transition: transform .5s ease; }
+.amenity-card img { width: 100%; height: 100%; min-height: 430px; object-fit: cover; object-position: center; filter: saturate(.96) contrast(.99); transition: transform .5s ease; }
+.amenity-card:nth-child(1) img { object-position: center 42%; }
+.amenity-card:nth-child(2) img { object-position: center 45%; }
+.amenity-card:nth-child(3) img { object-position: center 40%; }
+.amenity-card:nth-child(4) img { object-position: center 48%; }
+.amenity-card:nth-child(5) img { object-position: center 48%; }
 .amenity-card::after { position: absolute; inset: 0; content: ""; background: linear-gradient(180deg, rgba(0,0,0,.04) 22%, rgba(0,0,0,.78) 100%); }
 .amenity-card div { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; display: grid; align-content: end; min-height: 210px; padding: 24px; color: #fff; }
 .amenity-card svg { color: #fff; width: 26px; height: 26px; margin-bottom: 12px; }
