@@ -7,10 +7,10 @@
     <meta name="description" content="Wohnquartier Geseke West: energieeffiziente Eigentumswohnungen in Geseke an der Störmederstraße. KfW-40-Standard, kurze Wege und Beratung durch Sparkasse Geseke.">
     <meta name="theme-color" content="#CC0000">
     <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="preload" href="assets/images/hero-aerial.jpg" as="image">
     <link rel="preload" href="assets/images/hero-exterior.jpg" as="image">
     <link rel="preload" href="assets/images/hero-interior.jpg" as="image">
-    <link rel="preload" href="assets/images/hero-aerial.jpg" as="image">
-    <link rel="stylesheet" href="styles.css?v=20260703-hero-fix">
+    <link rel="stylesheet" href="styles.css?v=20260703-carousel-logo">
   </head>
   <body>
     <svg class="icon-sprite" aria-hidden="true" focusable="false">
@@ -46,9 +46,15 @@
     </header>
 
     <main id="start">
-      <section class="hero" style="background-image: url('assets/images/hero-exterior.jpg');">
+      <section class="hero" style="background-image: url('assets/images/hero-aerial.jpg');">
         <div class="slider hero-slider" data-slider data-autoplay="6200" aria-label="Projektbilder">
           <div class="slide is-active">
+            <img src="assets/images/hero-aerial.jpg" alt="Vogelperspektive des Wohnquartiers Geseke West">
+          </div>
+          <div class="slide">
+            <img src="assets/images/hero-aerial-alt.jpg" alt="Weitere Vogelperspektive des Wohnquartiers Geseke West">
+          </div>
+          <div class="slide">
             <img src="assets/images/hero-exterior.jpg" alt="Wohnquartier Geseke West Außenvisualisierung">
           </div>
           <div class="slide">
@@ -59,12 +65,6 @@
           </div>
           <div class="slide">
             <img src="assets/images/innen-typ-1-we2-wohnen-essen-kochen.jpg" alt="Weiterer Wohn-, Ess- und Kochbereich im Wohnquartier">
-          </div>
-          <div class="slide">
-            <img src="assets/images/hero-aerial.jpg" alt="Vogelperspektive des Wohnquartiers Geseke West">
-          </div>
-          <div class="slide">
-            <img src="assets/images/hero-aerial-alt.jpg" alt="Weitere Vogelperspektive des Wohnquartiers Geseke West">
           </div>
           <button class="slider-arrow prev" type="button" data-slider-prev aria-label="Vorheriges Bild">‹</button>
           <button class="slider-arrow next" type="button" data-slider-next aria-label="Nächstes Bild">›</button>
@@ -314,7 +314,12 @@
             <h2>Professionelle Beratung durch Sparkasse Geseke.</h2>
             <p>Die Vermarktung übernimmt die Sparkasse Geseke. Persönliche Beratung und erfahrene Ansprechpartner begleiten Sie von der ersten Anfrage bis zum Kauf Ihrer Wohnung.</p>
           </div>
-          <div class="sparkasse-mark"><svg><use href="#icon-bank"></use></svg><strong>Sparkasse Geseke</strong><span>Seit 1854.</span></div>
+          <div class="sparkasse-mark partner-logo-showcase" aria-label="Projektpartner Sparkasse Geseke">
+            <div class="partner-logo-card">
+              <img src="assets/images/sparkasse-logo-horizontal.png" alt="Sparkasse">
+            </div>
+            <span>Vermarktungspartner seit 1854.</span>
+          </div>
         </div>
         <div class="advisor-grid" aria-label="Ihre Ansprechpartner">
           <article><div class="advisor-photo">RS</div><h3>Ralf Sauermann-Tang</h3><p>Baufinanzierungs- und Immobilienberater</p><a href="#kontakt">Kontakt anfragen</a></article>
@@ -370,6 +375,6 @@
       <button class="lightbox-nav next" type="button" data-lightbox-next aria-label="Nächstes Bild">›</button>
     </div>
 
-    <script src="script.js?v=20260703-hero-fix"></script>
+    <script src="script.js?v=20260703-carousel-logo"></script>
   </body>
 </html>
