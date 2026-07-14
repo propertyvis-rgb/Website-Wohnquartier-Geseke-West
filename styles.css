@@ -460,13 +460,13 @@ figcaption { padding: 12px 14px; color: var(--muted); font-size: 14px; font-weig
 .legal-overview-head h2 { margin: 0; font-size: clamp(27px, 4vw, 42px); line-height: 1.04; letter-spacing: 0; }
 .legal-overview-head .section-kicker { margin-bottom: 10px; }
 .legal-sparkasse-logo {
-  width: clamp(160px, 20vw, 230px);
-  max-height: 86px;
-  padding: 18px 20px;
+  width: clamp(128px, 15vw, 176px);
+  max-height: 176px;
+  padding: 0;
   object-fit: contain;
-  background: var(--red);
+  background: transparent;
   border-radius: var(--radius);
-  box-shadow: 0 14px 30px rgba(238, 0, 0, .14);
+  box-shadow: none;
 }
 .legal-rows { display: grid; }
 .legal-row {
@@ -652,5 +652,5 @@ figcaption { padding: 12px 14px; color: var(--muted); font-size: 14px; font-weig
     grid-template-columns: 1fr;
   }
   .legal-contact-button { justify-self: start; }
-  .legal-sparkasse-logo { width: min(100%, 230px); }
+  .legal-sparkasse-logo { width: min(100%, 168px); }
 }
