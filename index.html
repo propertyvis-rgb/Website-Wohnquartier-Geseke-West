@@ -3,16 +3,322 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Wohnquartier Geseke West | Nachhaltig wohnen in Geseke</title>
-    <meta name="description" content="Wohnquartier Geseke West: energieeffiziente Eigentumswohnungen in Geseke an der Störmederstraße. KfW-40-Standard, kurze Wege und Beratung durch Sparkasse Geseke.">
+    <title>Wohnquartier Geseke West | Coming Soon</title>
+    <meta name="description" content="Wohnquartier Geseke West: Die Projektwebsite befindet sich derzeit im Aufbau. Weitere Informationen folgen in Kürze.">
     <meta name="theme-color" content="#EE0000">
     <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="preload" href="assets/images/hero-aerial-primary.jpg" as="image" fetchpriority="high">
     <link rel="preload" href="assets/images/hero-exterior.jpg" as="image">
     <link rel="preload" href="assets/images/hero-interior.jpg" as="image">
     <link rel="stylesheet" href="styles.css?v=20260714-hero-team">
+    <style>
+      :root {
+        --coming-soon-red: #EE0000;
+        --coming-soon-ink: #ffffff;
+        --coming-soon-muted: rgba(255, 255, 255, .78);
+        --coming-soon-paper: #F4F1E8;
+        --coming-soon-dark: #121416;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--coming-soon-dark);
+        background: var(--coming-soon-paper);
+      }
+
+      body > .icon-sprite,
+      body > .site-header,
+      body > main#start,
+      body > .site-footer,
+      body > .lightbox {
+        display: none !important;
+      }
+
+      .coming-soon-page {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .coming-soon-hero {
+        position: relative;
+        min-height: 100svh;
+        display: grid;
+        place-items: center;
+        isolation: isolate;
+        overflow: hidden;
+        padding: clamp(28px, 5vw, 64px);
+        color: var(--coming-soon-ink);
+        text-align: center;
+        background-image:
+          linear-gradient(90deg, rgba(12, 16, 18, .78), rgba(12, 16, 18, .42)),
+          radial-gradient(circle at 50% 42%, rgba(182, 194, 192, .16), transparent 42%),
+          url("assets/images/hero-aerial-primary.jpg");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .coming-soon-hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: linear-gradient(180deg, rgba(18, 20, 22, .12), rgba(18, 20, 22, .62));
+      }
+
+      .coming-soon-brand {
+        position: absolute;
+        top: clamp(22px, 4vw, 44px);
+        left: clamp(22px, 5vw, 72px);
+        width: clamp(168px, 18vw, 245px);
+        filter: drop-shadow(0 14px 32px rgba(0, 0, 0, .25));
+      }
+
+      .coming-soon-content {
+        width: min(100%, 900px);
+        animation: comingSoonFade .9s ease-out both;
+      }
+
+      .coming-soon-kicker {
+        margin: 0 0 22px;
+        color: rgba(255, 255, 255, .88);
+        font-size: clamp(.78rem, 1.8vw, .96rem);
+        font-weight: 800;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+      }
+
+      .coming-soon-content h1 {
+        margin: 0;
+        color: #fff;
+        font-size: clamp(3rem, 9vw, 7.75rem);
+        line-height: .92;
+        letter-spacing: 0;
+        font-weight: 900;
+        text-wrap: balance;
+      }
+
+      .coming-soon-copy {
+        width: min(100%, 690px);
+        margin: clamp(24px, 4vw, 36px) auto 0;
+        color: var(--coming-soon-muted);
+        font-size: clamp(1.1rem, 2.15vw, 1.55rem);
+        line-height: 1.58;
+      }
+
+      .coming-soon-copy p {
+        margin: 0;
+      }
+
+      .coming-soon-copy p + p {
+        margin-top: 6px;
+      }
+
+      .coming-soon-actions {
+        margin-top: clamp(30px, 4vw, 44px);
+      }
+
+      .coming-soon-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 58px;
+        padding: 0 32px;
+        border-radius: 999px;
+        background: var(--coming-soon-red);
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 850;
+        text-decoration: none;
+        box-shadow: 0 18px 36px rgba(238, 0, 0, .25);
+        transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+      }
+
+      .coming-soon-button:hover,
+      .coming-soon-button:focus-visible {
+        transform: translateY(-2px);
+        background: #d80000;
+        box-shadow: 0 24px 44px rgba(238, 0, 0, .34);
+      }
+
+      .coming-soon-contact {
+        padding: clamp(64px, 9vw, 112px) clamp(22px, 5vw, 72px);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, .74), rgba(255, 255, 255, .92)),
+          var(--coming-soon-paper);
+      }
+
+      .coming-soon-contact-card {
+        width: min(100%, 820px);
+        margin: 0 auto;
+        padding: clamp(28px, 5vw, 52px);
+        border: 1px solid rgba(18, 20, 22, .12);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, .82);
+        box-shadow: 0 22px 60px rgba(18, 20, 22, .08);
+        animation: comingSoonFade .9s ease-out both;
+      }
+
+      .coming-soon-contact-card h2 {
+        margin: 0 0 24px;
+        color: var(--coming-soon-dark);
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      .coming-soon-contact-list {
+        display: grid;
+        gap: 14px;
+        margin: 0;
+        color: #4c5357;
+        font-size: clamp(1.02rem, 1.6vw, 1.2rem);
+        line-height: 1.5;
+      }
+
+      .coming-soon-contact-list div {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 10px;
+      }
+
+      .coming-soon-contact-list dt {
+        font-weight: 850;
+        color: #202327;
+      }
+
+      .coming-soon-contact-list dd {
+        margin: 0;
+      }
+
+      .coming-soon-contact-list a {
+        color: var(--coming-soon-red);
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .coming-soon-contact-list a:hover,
+      .coming-soon-contact-list a:focus-visible {
+        text-decoration: underline;
+      }
+
+      .coming-soon-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        padding: 28px 22px;
+        background: #fff;
+        color: #656a6d;
+        font-size: .95rem;
+      }
+
+      .coming-soon-footer a {
+        color: var(--coming-soon-red);
+        font-weight: 850;
+        text-decoration: none;
+      }
+
+      .coming-soon-footer a:hover,
+      .coming-soon-footer a:focus-visible {
+        text-decoration: underline;
+      }
+
+      @keyframes comingSoonFade {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 760px) {
+        .coming-soon-hero {
+          align-items: center;
+          padding: 112px 22px 46px;
+          background-position: 58% center;
+        }
+
+        .coming-soon-brand {
+          left: 50%;
+          transform: translateX(-50%);
+          width: 184px;
+        }
+
+        .coming-soon-content h1 {
+          font-size: clamp(2.9rem, 16vw, 4.65rem);
+        }
+
+        .coming-soon-copy {
+          font-size: 1.05rem;
+        }
+
+        .coming-soon-button {
+          width: min(100%, 310px);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: .01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: .01ms !important;
+        }
+      }
+    </style>
   </head>
   <body>
+    <main class="coming-soon-page">
+      <section class="coming-soon-hero" aria-label="Wohnquartier Geseke West">
+        <img class="coming-soon-brand" src="assets/images/wohnquartier-geseke-west-logo-cropped.png" alt="Wohnquartier Geseke West">
+        <div class="coming-soon-content">
+          <p class="coming-soon-kicker">Geseke · Störmederstraße</p>
+          <h1>Wohnquartier Geseke West</h1>
+          <div class="coming-soon-copy">
+            <p>Unsere Projektwebsite befindet sich derzeit im Aufbau.</p>
+            <p>Weitere Informationen folgen in Kürze.</p>
+          </div>
+          <div class="coming-soon-actions">
+            <a class="coming-soon-button" href="#kontakt-coming-soon">Kontakt aufnehmen</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="coming-soon-contact" id="kontakt-coming-soon" aria-labelledby="kontakt-title">
+        <div class="coming-soon-contact-card">
+          <h2 id="kontakt-title">Sparkasse Geseke</h2>
+          <dl class="coming-soon-contact-list">
+            <div>
+              <dt>Telefon:</dt>
+              <dd><a href="tel:+4929425090">02942 509-0</a></dd>
+            </div>
+            <div>
+              <dt>E-Mail:</dt>
+              <dd><a href="mailto:info@sparkasse-geseke.de">info@sparkasse-geseke.de</a></dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+    </main>
+
+    <footer class="coming-soon-footer">
+      <a href="impressum.html">Impressum</a>
+      <span>Copyright © Sparkasse Geseke</span>
+    </footer>
     <svg class="icon-sprite" aria-hidden="true" focusable="false">
       <symbol id="icon-leaf-home" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10.5V21h14V10.5"/><path d="M9.2 17.7c4.2.5 6.8-1.8 7.2-6.5-4.9.2-7.5 2.5-7.2 6.5Z"/><path d="M9.4 17.4 15.6 12"/></symbol>
       <symbol id="icon-walk" viewBox="0 0 24 24"><circle cx="12.5" cy="4" r="2"/><path d="m10.5 21 1.5-6-3-2-2 3.5"/><path d="m13 7 2 4 3 1"/><path d="m12 9-3 3"/><path d="m13.5 15 4 6"/></symbol>
