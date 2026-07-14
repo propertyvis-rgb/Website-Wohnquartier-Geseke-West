@@ -31,7 +31,7 @@ if (leadForm && formNote) {
     if (!leadForm.checkValidity()) {
       event.preventDefault();
       formNote.textContent = "Bitte füllen Sie die Pflichtfelder aus.";
-      formNote.style.color = "#cc0000";
+      formNote.style.color = "#EE0000";
       leadForm.reportValidity();
       return;
     }

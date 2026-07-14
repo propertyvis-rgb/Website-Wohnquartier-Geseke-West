@@ -1,5 +1,5 @@
 :root {
-  --red: #cc0000;
+  --red: #EE0000;
   --blue: #4A7FA5;
   --trust-blue: #B6C2C0;
   --field: #f4f1e8;
@@ -112,10 +112,10 @@ h4 { margin: 0 0 16px; font-size: 21px; }
   cursor: pointer;
   transition: background .22s ease, border-color .22s ease, color .22s ease, box-shadow .22s ease, transform .22s ease;
 }
-.button.primary { background: var(--red); color: var(--white); box-shadow: 0 10px 22px rgba(204, 0, 0, .22); }
+.button.primary { background: var(--red); color: var(--white); box-shadow: 0 10px 22px rgba(238, 0, 0, .22); }
 .button.secondary { background: rgba(255, 255, 255, .88); border-color: rgba(255, 255, 255, .52); color: var(--blue); text-shadow: none; }
 .button:hover, .button:focus-visible { transform: translateY(-2px); }
-.button.primary:hover { background: #b40000; box-shadow: 0 14px 30px rgba(204, 0, 0, .28); }
+.button.primary:hover { background: var(--red); box-shadow: 0 14px 30px rgba(238, 0, 0, .28); }
 
 .slider { position: relative; overflow: hidden; background: #161817; border-radius: var(--radius); }
 .slide { position: absolute; inset: 0; opacity: 0; transition: opacity .75s ease, transform .75s ease; transform: scale(1.015); pointer-events: none; }
@@ -248,7 +248,7 @@ figcaption { padding: 12px 14px; color: var(--muted); font-size: 14px; font-weig
 .gallery-trigger { display: block; width: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; overflow: hidden; }
 .gallery-trigger img { transition: transform .45s ease, filter .25s ease; }
 .gallery-trigger:hover img, .gallery-trigger:focus-visible img { transform: scale(1.035); filter: saturate(1.03) contrast(1.02); }
-.gallery-trigger:focus-visible { outline: 3px solid rgba(204, 0, 0, .28); outline-offset: 3px; }
+.gallery-trigger:focus-visible { outline: 3px solid rgba(238, 0, 0, .28); outline-offset: 3px; }
 .interior-gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
 .interior-gallery figure img { aspect-ratio: 4 / 3; min-height: 0; object-fit: cover; }
 
@@ -466,7 +466,7 @@ figcaption { padding: 12px 14px; color: var(--muted); font-size: 14px; font-weig
   object-fit: contain;
   background: var(--red);
   border-radius: var(--radius);
-  box-shadow: 0 14px 30px rgba(204, 0, 0, .14);
+  box-shadow: 0 14px 30px rgba(238, 0, 0, .14);
 }
 .legal-rows { display: grid; }
 .legal-row {
