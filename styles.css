@@ -1,6 +1,7 @@
 :root {
   --red: #cc0000;
   --blue: #4A7FA5;
+  --trust-blue: #B6C2C0;
   --field: #f4f1e8;
   --warm: #fbf8f0;
   --ink: #202124;
@@ -73,7 +74,7 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
   padding: 136px clamp(20px, 6vw, 76px) 82px;
   overflow: hidden;
   isolation: isolate;
-  background: #161817 url("assets/images/hero-aerial.jpg") center / cover no-repeat;
+  background: #161817 url("assets/images/hero-aerial-primary.jpg") center / cover no-repeat;
 }
 .hero-slider { position: absolute; inset: 0; border-radius: 0; background: #161817; pointer-events: none; }
 .hero-slider .slide img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
@@ -292,30 +293,53 @@ figcaption { padding: 12px 14px; color: var(--muted); font-size: 14px; font-weig
 .partner-track img:hover { filter: grayscale(0) opacity(1); transform: translateY(-2px); }
 @keyframes partner-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-.trust { max-width: none; padding-left: clamp(20px, 4vw, 56px); padding-right: clamp(20px, 4vw, 56px); background: var(--blue); color: var(--white); }
+.trust { max-width: none; padding-left: clamp(20px, 4vw, 56px); padding-right: clamp(20px, 4vw, 56px); background: var(--trust-blue); color: var(--ink); }
 .trust > * { max-width: var(--max); margin-left: auto; margin-right: auto; }
-.trust .section-kicker { color: #f6dada; }
-.trust-panel { display: grid; grid-template-columns: 1fr minmax(240px, 340px); gap: 34px; align-items: center; margin-bottom: 28px; }
-.trust-panel p { color: rgba(255, 255, 255, .82); }
-.sparkasse-mark { display: grid; align-content: center; justify-items: center; min-height: 220px; padding: 28px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.22); border-radius: var(--radius); text-align: center; }
-.partner-logo-card { display: grid; place-items: center; width: 100%; min-height: 132px; padding: 24px; background: var(--white); border: 1px solid rgba(255,255,255,.52); border-radius: var(--radius); box-shadow: 0 18px 42px rgba(0, 0, 0, .12); }
+.trust .section-kicker { color: var(--red); }
+.trust-panel { display: grid; grid-template-columns: 1fr minmax(240px, 340px); gap: 34px; align-items: center; margin-bottom: 32px; }
+.trust-panel p { color: rgba(32, 33, 36, .72); }
+.sparkasse-mark { display: grid; align-content: center; justify-items: center; min-height: 220px; padding: 28px; background: rgba(255,255,255,.22); border: 1px solid rgba(255,255,255,.42); border-radius: var(--radius); text-align: center; box-shadow: 0 18px 45px rgba(44, 39, 29, .08); }
+.partner-logo-card { display: grid; place-items: center; width: 100%; min-height: 132px; padding: 24px; background: var(--white); border: 1px solid rgba(255,255,255,.76); border-radius: var(--radius); box-shadow: 0 18px 42px rgba(44, 39, 29, .10); }
 .partner-logo-card img { width: min(100%, 220px); max-height: 118px; object-fit: contain; }
-.sparkasse-mark span { margin-top: 18px; color: rgba(255,255,255,.78); }
-.advisor-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-.advisor-grid article { display: flex; flex-direction: column; color: var(--ink); }
+.sparkasse-mark span { margin-top: 18px; color: rgba(32, 33, 36, .72); }
+.advisor-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; align-items: stretch; }
+.advisor-grid article {
+  display: flex;
+  min-height: 100%;
+  padding: 0;
+  overflow: hidden;
+  flex-direction: column;
+  color: var(--ink);
+  background: rgba(255, 255, 255, .94);
+  border-color: rgba(255, 255, 255, .68);
+  box-shadow: 0 18px 44px rgba(44, 39, 29, .10);
+}
 .advisor-photo {
   width: 100%;
-  height: 220px;
-  margin-bottom: 18px;
+  height: 252px;
+  margin-bottom: 0;
   overflow: hidden;
-  border-radius: var(--radius);
-  background: var(--field);
+  border-radius: 0;
+  background: var(--white);
 }
-.advisor-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-.advisor-details { display: grid; gap: 6px; margin-bottom: 18px; }
+.advisor-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  image-rendering: auto;
+  filter: contrast(1.03) saturate(1.04);
+  transform: scale(1.01);
+}
+.advisor-card-ralf .advisor-photo img { object-position: center 20%; }
+.advisor-card-oliver .advisor-photo img { object-position: center 18%; }
+.advisor-card-martina .advisor-photo img { object-position: center 19%; }
+.advisor-card-alexander .advisor-photo img { object-position: center 12%; }
+.advisor-grid article h3 { margin: 22px 22px 10px; min-height: 58px; }
+.advisor-details { display: grid; min-height: 88px; gap: 6px; margin: 0 22px 18px; }
 .advisor-details p { margin: 0; }
-.advisor-contact { display: grid; gap: 8px; margin-top: auto; }
-.advisor-grid a { color: var(--red); font-weight: 900; overflow-wrap: anywhere; }
+.advisor-contact { display: grid; gap: 8px; margin: auto 22px 24px; padding-top: 18px; border-top: 1px solid rgba(222, 216, 202, .88); }
+.advisor-grid a { display: inline-flex; align-items: center; min-height: 24px; color: var(--red); font-size: 14px; font-weight: 900; line-height: 1.35; overflow-wrap: anywhere; }
 
 .location-map {
   min-height: 360px;
@@ -480,6 +504,7 @@ figcaption { padding: 12px 14px; color: var(--muted); font-size: 14px; font-weig
   .partner-track { gap: 30px; padding: 24px 30px; }
   .partner-track img { width: 150px; height: 68px; }
   .trust-panel, .site-footer { grid-template-columns: 1fr; }
+  .advisor-grid article h3, .advisor-details { min-height: auto; }
   .advisor-photo { height: 260px; }
   .location-map { min-height: 420px; aspect-ratio: auto; }
 }

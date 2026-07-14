@@ -7,10 +7,10 @@
     <meta name="description" content="Wohnquartier Geseke West: energieeffiziente Eigentumswohnungen in Geseke an der Störmederstraße. KfW-40-Standard, kurze Wege und Beratung durch Sparkasse Geseke.">
     <meta name="theme-color" content="#CC0000">
     <link rel="icon" href="favicon.ico" sizes="any">
-    <link rel="preload" href="assets/images/hero-aerial.jpg" as="image">
+    <link rel="preload" href="assets/images/hero-aerial-primary.jpg" as="image" fetchpriority="high">
     <link rel="preload" href="assets/images/hero-exterior.jpg" as="image">
     <link rel="preload" href="assets/images/hero-interior.jpg" as="image">
-    <link rel="stylesheet" href="styles.css?v=20260703-carousel-logo">
+    <link rel="stylesheet" href="styles.css?v=20260714-hero-team">
   </head>
   <body>
     <svg class="icon-sprite" aria-hidden="true" focusable="false">
@@ -46,25 +46,25 @@
     </header>
 
     <main id="start">
-      <section class="hero" style="background-image: url('assets/images/hero-aerial.jpg');">
+      <section class="hero" style="background-image: url('assets/images/hero-aerial-primary.jpg');">
         <div class="slider hero-slider" data-slider data-autoplay="6200" aria-label="Projektbilder">
           <div class="slide is-active">
-            <img src="assets/images/hero-aerial.jpg" alt="Vogelperspektive des Wohnquartiers Geseke West">
+            <img src="assets/images/hero-aerial-primary.jpg" alt="Vogelperspektive des Wohnquartiers Geseke West" fetchpriority="high" decoding="async">
           </div>
           <div class="slide">
-            <img src="assets/images/hero-aerial-alt.jpg" alt="Weitere Vogelperspektive des Wohnquartiers Geseke West">
+            <img src="assets/images/hero-aerial-alt.jpg" alt="Weitere Vogelperspektive des Wohnquartiers Geseke West" loading="lazy" decoding="async">
           </div>
           <div class="slide">
-            <img src="assets/images/hero-exterior.jpg" alt="Wohnquartier Geseke West Außenvisualisierung">
+            <img src="assets/images/hero-exterior.jpg" alt="Wohnquartier Geseke West Außenvisualisierung" loading="lazy" decoding="async">
           </div>
           <div class="slide">
-            <img src="assets/images/typ-2-gartenansicht-upload.jpg" alt="Wohnquartier Geseke West weitere Außenvisualisierung">
+            <img src="assets/images/typ-2-gartenansicht-upload.jpg" alt="Wohnquartier Geseke West weitere Außenvisualisierung" loading="lazy" decoding="async">
           </div>
           <div class="slide">
-            <img src="assets/images/hero-interior.jpg" alt="Wohn-, Ess- und Kochbereich im Wohnquartier">
+            <img src="assets/images/hero-interior.jpg" alt="Wohn-, Ess- und Kochbereich im Wohnquartier" loading="lazy" decoding="async">
           </div>
           <div class="slide">
-            <img src="assets/images/innen-typ-1-we2-wohnen-essen-kochen.jpg" alt="Weiterer Wohn-, Ess- und Kochbereich im Wohnquartier">
+            <img src="assets/images/innen-typ-1-we2-wohnen-essen-kochen.jpg" alt="Weiterer Wohn-, Ess- und Kochbereich im Wohnquartier" loading="lazy" decoding="async">
           </div>
           <button class="slider-arrow prev" type="button" data-slider-prev aria-label="Vorheriges Bild">‹</button>
           <button class="slider-arrow next" type="button" data-slider-next aria-label="Nächstes Bild">›</button>
@@ -322,7 +322,7 @@
           </div>
         </div>
         <div class="advisor-grid" aria-label="Ihre Ansprechpartner">
-          <article>
+          <article class="advisor-card advisor-card-ralf">
             <div class="advisor-photo"><img src="assets/images/advisor-ralf-sauermann-tang.jpg" alt="Ralf Sauermann-Tang" loading="lazy"></div>
             <h3>Ralf Sauermann-Tang</h3>
             <div class="advisor-details">
@@ -334,7 +334,7 @@
               <a href="tel:+492942509210">02942 509210</a>
             </div>
           </article>
-          <article>
+          <article class="advisor-card advisor-card-oliver">
             <div class="advisor-photo"><img src="assets/images/advisor-oliver-dormann.jpg" alt="Oliver Dormann" loading="lazy"></div>
             <h3>Oliver Dormann</h3>
             <div class="advisor-details">
@@ -346,7 +346,7 @@
               <a href="tel:+492942509212">02942 509212</a>
             </div>
           </article>
-          <article>
+          <article class="advisor-card advisor-card-martina">
             <div class="advisor-photo"><img src="assets/images/advisor-martina-marx.jpg" alt="Martina Marx" loading="lazy"></div>
             <h3>Martina Marx</h3>
             <div class="advisor-details">
@@ -358,7 +358,7 @@
               <a href="tel:+492942509244">02942 509244</a>
             </div>
           </article>
-          <article>
+          <article class="advisor-card advisor-card-alexander">
             <div class="advisor-photo"><img src="assets/images/advisor-alexander-laumeier.jpg" alt="Alexander Laumeier" loading="lazy"></div>
             <h3>Alexander Laumeier</h3>
             <div class="advisor-details">
