@@ -11,6 +11,11 @@
     <link rel="preload" href="assets/images/hero-exterior.jpg" as="image">
     <link rel="preload" href="assets/images/hero-interior.jpg" as="image">
     <link rel="stylesheet" href="styles.css?v=20260714-hero-team">
+    <script>
+      if (new URLSearchParams(window.location.search).get("view") === "original") {
+        document.documentElement.classList.add("show-original-homepage");
+      }
+    </script>
     <style>
       :root {
         --coming-soon-red: #EE0000;
@@ -36,6 +41,24 @@
       body > .site-footer,
       body > .lightbox {
         display: none !important;
+      }
+
+      html.show-original-homepage body > .coming-soon-page,
+      html.show-original-homepage body > .coming-soon-footer {
+        display: none !important;
+      }
+
+      html.show-original-homepage body > .icon-sprite {
+        display: block !important;
+      }
+
+      html.show-original-homepage body > .site-header,
+      html.show-original-homepage body > .site-footer {
+        display: grid !important;
+      }
+
+      html.show-original-homepage body > main#start {
+        display: block !important;
       }
 
       .coming-soon-page {
@@ -229,6 +252,10 @@
         text-decoration: underline;
       }
 
+      .coming-soon-footer .coming-soon-preview-link {
+        color: #656a6d;
+      }
+
       @keyframes comingSoonFade {
         from {
           opacity: 0;
@@ -320,6 +347,7 @@
 
     <footer class="coming-soon-footer">
       <a href="impressum.html">Impressum</a>
+      <a class="coming-soon-preview-link" href="preview.html">Wohnquartier Geseke West</a>
       <span>Copyright © Sparkasse Geseke</span>
     </footer>
     <svg class="icon-sprite" aria-hidden="true" focusable="false">
