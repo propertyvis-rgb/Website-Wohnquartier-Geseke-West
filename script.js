@@ -5,12 +5,16 @@ const formNote = document.querySelector("[data-form-note]");
 const lightbox = document.querySelector("[data-lightbox]");
 const lightboxImage = document.querySelector("[data-lightbox-image]");
 const lightboxCaption = document.querySelector("[data-lightbox-caption]");
+const lightboxCounter = document.querySelector("[data-lightbox-counter]");
 const lightboxClose = document.querySelector("[data-lightbox-close]");
 const lightboxPrev = document.querySelector("[data-lightbox-prev]");
 const lightboxNext = document.querySelector("[data-lightbox-next]");
 let galleryButtons = [];
+let activeGalleryButtons = [];
 let activeGalleryIndex = 0;
 let previousFocus = null;
+let touchStartX = 0;
+let touchStartY = 0;
 
 document.querySelectorAll('img[loading="lazy"][src^="assets/images/"]').forEach((image) => {
   const source = image.getAttribute("src");
@@ -120,11 +124,16 @@ function refreshGalleryButtons() {
   galleryButtons = Array.from(document.querySelectorAll(".gallery-trigger"));
 }
 
-function showGalleryImage(index) {
-  if (!galleryButtons.length || !lightboxImage || !lightboxCaption) return;
+function getGalleryGroup(button) {
+  const group = button.closest(".plan-type, .interior-type-grid > article");
+  return group ? Array.from(group.querySelectorAll(".gallery-trigger")) : [button];
+}
 
-  activeGalleryIndex = (index + galleryButtons.length) % galleryButtons.length;
-  const button = galleryButtons[activeGalleryIndex];
+function showGalleryImage(index) {
+  if (!activeGalleryButtons.length || !lightboxImage || !lightboxCaption) return;
+
+  activeGalleryIndex = (index + activeGalleryButtons.length) % activeGalleryButtons.length;
+  const button = activeGalleryButtons[activeGalleryIndex];
   const image = button.querySelector("img");
   const fullSrc = button.dataset.full || image?.src || "";
   const title = button.dataset.title || image?.alt || "";
@@ -132,13 +141,15 @@ function showGalleryImage(index) {
   lightboxImage.src = fullSrc;
   lightboxImage.alt = image?.alt || title;
   lightboxCaption.textContent = title;
+  if (lightboxCounter) lightboxCounter.textContent = `${activeGalleryIndex + 1} / ${activeGalleryButtons.length}`;
 }
 
-function openLightbox(index) {
+function openLightbox(button) {
   if (!lightbox) return;
 
   previousFocus = document.activeElement;
-  showGalleryImage(index);
+  activeGalleryButtons = getGalleryGroup(button);
+  showGalleryImage(activeGalleryButtons.indexOf(button));
   lightbox.classList.add("is-open");
   lightbox.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
@@ -152,12 +163,13 @@ function closeLightbox() {
   lightbox.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
   if (lightboxImage) lightboxImage.src = "";
+  activeGalleryButtons = [];
   previousFocus?.focus?.();
 }
 
 refreshGalleryButtons();
-galleryButtons.forEach((button, index) => {
-  button.addEventListener("click", () => openLightbox(index));
+galleryButtons.forEach((button) => {
+  button.addEventListener("click", () => openLightbox(button));
 });
 
 lightboxClose?.addEventListener("click", closeLightbox);
@@ -167,6 +179,21 @@ lightboxNext?.addEventListener("click", () => showGalleryImage(activeGalleryInde
 lightbox?.addEventListener("click", (event) => {
   if (event.target === lightbox) closeLightbox();
 });
+
+lightbox?.addEventListener("touchstart", (event) => {
+  const touch = event.changedTouches[0];
+  touchStartX = touch.clientX;
+  touchStartY = touch.clientY;
+}, { passive: true });
+
+lightbox?.addEventListener("touchend", (event) => {
+  const touch = event.changedTouches[0];
+  const deltaX = touch.clientX - touchStartX;
+  const deltaY = touch.clientY - touchStartY;
+
+  if (Math.abs(deltaX) < 50 || Math.abs(deltaX) < Math.abs(deltaY)) return;
+  showGalleryImage(activeGalleryIndex + (deltaX < 0 ? 1 : -1));
+}, { passive: true });
 
 document.addEventListener("keydown", (event) => {
   if (!lightbox?.classList.contains("is-open")) return;

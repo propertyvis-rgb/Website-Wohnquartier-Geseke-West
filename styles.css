@@ -554,15 +554,21 @@ figcaption { padding: 12px 14px; color: var(--muted); font-size: 14px; font-weig
   position: fixed;
   inset: 0;
   z-index: 100;
-  display: none;
+  display: grid;
   place-items: center;
   padding: 28px;
   background: rgba(12, 16, 20, .86);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .24s ease, visibility .24s ease;
 }
-.lightbox.is-open { display: grid; }
+.lightbox.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
 .lightbox-frame { width: min(1180px, 100%); max-height: 86vh; border: 0; background: transparent; box-shadow: none; }
-.lightbox-frame img { width: 100%; max-height: 78vh; min-height: 0; object-fit: contain; background: #fff; }
-.lightbox-frame figcaption { color: #fff; text-align: center; }
+.lightbox-frame img { width: 100%; max-height: 78vh; min-height: 0; object-fit: contain; background: #fff; transform: scale(.985); transition: transform .28s ease; }
+.lightbox.is-open .lightbox-frame img { transform: scale(1); }
+.lightbox-frame figcaption { display: flex; justify-content: center; gap: 14px; color: #fff; text-align: center; }
+.lightbox-counter { color: rgba(255,255,255,.68); font-variant-numeric: tabular-nums; }
 .lightbox-close, .lightbox-nav {
   position: fixed;
   z-index: 101;
@@ -577,6 +583,17 @@ figcaption { padding: 12px 14px; color: var(--muted); font-size: 14px; font-weig
 .lightbox-nav { top: 50%; width: 48px; height: 48px; font-size: 36px; transform: translateY(-50%); }
 .lightbox-nav.prev { left: 22px; }
 .lightbox-nav.next { right: 22px; }
+
+@media (max-width: 620px) {
+  .lightbox { padding: 72px 12px 76px; }
+  .lightbox-frame { max-height: 100%; }
+  .lightbox-frame img { max-height: calc(100svh - 170px); }
+  .lightbox-close { top: 14px; right: 14px; width: 42px; height: 42px; }
+  .lightbox-nav { top: auto; bottom: 16px; width: 44px; height: 44px; transform: none; }
+  .lightbox-nav.prev { left: calc(50% - 56px); }
+  .lightbox-nav.next { right: calc(50% - 56px); }
+  .lightbox-frame figcaption { margin-top: 10px; font-size: 14px; }
+}
 
 @media (max-width: 1080px) {
   .site-header { grid-template-columns: auto 1fr auto; }
