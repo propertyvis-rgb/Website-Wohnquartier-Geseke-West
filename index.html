@@ -7,9 +7,7 @@
     <meta name="description" content="Wohnquartier Geseke West: Die Projektwebsite befindet sich derzeit im Aufbau. Weitere Informationen folgen in Kürze.">
     <meta name="theme-color" content="#EE0000">
     <link rel="icon" href="favicon.ico" sizes="any">
-    <link rel="preload" href="assets/images/hero-aerial-primary.jpg" as="image" fetchpriority="high">
-    <link rel="preload" href="assets/images/hero-exterior.jpg" as="image">
-    <link rel="preload" href="assets/images/hero-interior.jpg" as="image">
+    <link rel="preload" href="assets/images/hero-aerial-primary.jpg" as="image" type="image/webp" imagesrcset="assets/images/hero-aerial-primary-640.webp 640w, assets/images/hero-aerial-primary-1280.webp 1280w, assets/images/hero-aerial-primary-1920.webp 1920w, assets/images/hero-aerial-primary-2500.webp 2500w" imagesizes="100vw" fetchpriority="high">
     <link rel="stylesheet" href="styles.css?v=20260714-hero-team">
     <script>
       if (new URLSearchParams(window.location.search).get("view") === "original") {
@@ -81,6 +79,14 @@
           linear-gradient(90deg, rgba(12, 16, 18, .78), rgba(12, 16, 18, .42)),
           radial-gradient(circle at 50% 42%, rgba(182, 194, 192, .16), transparent 42%),
           url("assets/images/hero-aerial-primary.jpg");
+        background-image:
+          linear-gradient(90deg, rgba(12, 16, 18, .78), rgba(12, 16, 18, .42)),
+          radial-gradient(circle at 50% 42%, rgba(182, 194, 192, .16), transparent 42%),
+          image-set(
+            url("assets/images/hero-aerial-primary-1280.webp") type("image/webp") 1x,
+            url("assets/images/hero-aerial-primary-2500.webp") type("image/webp") 2x,
+            url("assets/images/hero-aerial-primary.jpg") type("image/jpeg") 2x
+          );
         background-size: cover;
         background-position: center;
       }
@@ -272,6 +278,14 @@
           align-items: center;
           padding: 112px 22px 46px;
           background-position: 58% center;
+          background-image:
+            linear-gradient(90deg, rgba(12, 16, 18, .78), rgba(12, 16, 18, .42)),
+            radial-gradient(circle at 50% 42%, rgba(182, 194, 192, .16), transparent 42%),
+            image-set(
+              url("assets/images/hero-aerial-primary-640.webp") type("image/webp") 1x,
+              url("assets/images/hero-aerial-primary-1280.webp") type("image/webp") 2x,
+              url("assets/images/hero-aerial-primary.jpg") type("image/jpeg") 2x
+            );
         }
 
         .coming-soon-brand {
@@ -314,7 +328,7 @@
   <body>
     <main class="coming-soon-page">
       <section class="coming-soon-hero" aria-label="Wohnquartier Geseke West">
-        <img class="coming-soon-brand" src="assets/images/wohnquartier-logo-transparent-coming-soon.png" alt="Wohnquartier Geseke West">
+        <img class="coming-soon-brand" src="assets/images/wohnquartier-logo-transparent-coming-soon.png" alt="Wohnquartier Geseke West" width="1450" height="379" decoding="async">
         <div class="coming-soon-content">
           <p class="coming-soon-kicker">Geseke · Störmederstraße</p>
           <h1>Wohnquartier Geseke West</h1>
@@ -367,7 +381,7 @@
 
     <header class="site-header" data-header>
       <a class="brand" href="#start" aria-label="Wohnquartier Geseke West Startseite">
-        <img src="assets/images/wohnquartier-geseke-west-logo-cropped.png" alt="Wohnquartier Geseke West">
+        <img src="assets/images/wohnquartier-geseke-west-logo-cropped.png" alt="Wohnquartier Geseke West" width="1382" height="344" loading="lazy" decoding="async">
       </a>
       <nav class="main-nav" aria-label="Hauptnavigation">
         <a href="#projekt">Projekt</a>
@@ -383,10 +397,10 @@
     </header>
 
     <main id="start">
-      <section class="hero" style="background-image: url('assets/images/hero-aerial-primary.jpg');">
+      <section class="hero">
         <div class="slider hero-slider" data-slider data-autoplay="6200" aria-label="Projektbilder">
           <div class="slide is-active">
-            <img src="assets/images/hero-aerial-primary.jpg" alt="Vogelperspektive des Wohnquartiers Geseke West" fetchpriority="high" decoding="async">
+            <img src="assets/images/hero-aerial-primary.jpg" srcset="assets/images/hero-aerial-primary-640.webp 640w, assets/images/hero-aerial-primary-1280.webp 1280w, assets/images/hero-aerial-primary-1920.webp 1920w, assets/images/hero-aerial-primary-2500.webp 2500w" sizes="100vw" alt="Vogelperspektive des Wohnquartiers Geseke West" width="2500" height="1406" loading="eager" fetchpriority="high" decoding="async">
           </div>
           <div class="slide">
             <img src="assets/images/hero-aerial-alt.jpg" alt="Weitere Vogelperspektive des Wohnquartiers Geseke West" loading="lazy" decoding="async">
@@ -476,10 +490,10 @@
             <h2>Ein visueller Eindruck vor den Wohnvarianten.</h2>
           </div>
           <div class="slider wide-slider" data-slider data-autoplay="5400">
-            <div class="slide is-active"><img src="assets/images/typ-1-strassenansicht.jpg" alt="Straßenansicht Typ 1"></div>
-            <div class="slide"><img src="assets/images/typ-2-gartenansicht.jpg" alt="Gartenansicht Typ 2"></div>
-            <div class="slide"><img src="assets/images/typ-3-gartenansicht.jpg" alt="Gartenansicht Typ 3"></div>
-            <div class="slide"><img src="assets/images/innen-typ-2-we1-wohnen-essen-kochen.jpg" alt="Wohnbereich Typ 2"></div>
+            <div class="slide is-active"><img src="assets/images/typ-1-strassenansicht.jpg" alt="Straßenansicht Typ 1" loading="lazy" decoding="async"></div>
+            <div class="slide"><img src="assets/images/typ-2-gartenansicht.jpg" alt="Gartenansicht Typ 2" loading="lazy" decoding="async"></div>
+            <div class="slide"><img src="assets/images/typ-3-gartenansicht.jpg" alt="Gartenansicht Typ 3" loading="lazy" decoding="async"></div>
+            <div class="slide"><img src="assets/images/innen-typ-2-we1-wohnen-essen-kochen.jpg" alt="Wohnbereich Typ 2" loading="lazy" decoding="async"></div>
             <button class="slider-arrow prev" type="button" data-slider-prev aria-label="Vorheriges Bild">‹</button>
             <button class="slider-arrow next" type="button" data-slider-next aria-label="Nächstes Bild">›</button>
             <div class="slider-dots" data-slider-dots></div>
@@ -497,10 +511,10 @@
         <div class="type-stack">
           <article class="type-card" id="typ-1">
             <div class="type-gallery slider" data-slider data-autoplay="5000">
-              <div class="slide is-active"><img src="assets/images/typ-1-gartenansicht.jpg" alt="Typ 1 Gartenansicht"></div>
-              <div class="slide"><img src="assets/images/typ-1-strassenansicht.jpg" alt="Typ 1 Straßenansicht"></div>
-              <div class="slide"><img src="assets/images/innen-typ-1-we1-wohnen-essen-kochen.jpg" alt="Typ 1 Wohnbereich"></div>
-              <div class="slide"><img src="assets/images/innen-typ-1-we1-schlafzimmer.jpg" alt="Typ 1 Schlafzimmer"></div>
+              <div class="slide is-active"><img src="assets/images/typ-1-gartenansicht.jpg" alt="Typ 1 Gartenansicht" loading="lazy" decoding="async"></div>
+              <div class="slide"><img src="assets/images/typ-1-strassenansicht.jpg" alt="Typ 1 Straßenansicht" loading="lazy" decoding="async"></div>
+              <div class="slide"><img src="assets/images/innen-typ-1-we1-wohnen-essen-kochen.jpg" alt="Typ 1 Wohnbereich" loading="lazy" decoding="async"></div>
+              <div class="slide"><img src="assets/images/innen-typ-1-we1-schlafzimmer.jpg" alt="Typ 1 Schlafzimmer" loading="lazy" decoding="async"></div>
               <button class="slider-arrow prev" type="button" data-slider-prev aria-label="Vorheriges Bild">‹</button>
               <button class="slider-arrow next" type="button" data-slider-next aria-label="Nächstes Bild">›</button>
               <div class="slider-dots" data-slider-dots></div>
@@ -516,10 +530,10 @@
 
           <article class="type-card" id="typ-2">
             <div class="type-gallery slider" data-slider data-autoplay="5200">
-              <div class="slide is-active"><img src="assets/images/typ-2-gartenansicht.jpg" alt="Typ 2 Gartenansicht"></div>
-              <div class="slide"><img src="assets/images/typ-2-strassenansicht.jpg" alt="Typ 2 Straßenansicht"></div>
-              <div class="slide"><img src="assets/images/innen-typ-2-we1-wohnen-essen-kochen.jpg" alt="Typ 2 Wohnbereich"></div>
-              <div class="slide"><img src="assets/images/innen-typ-2-we2-bad.jpg" alt="Typ 2 Badezimmer"></div>
+              <div class="slide is-active"><img src="assets/images/typ-2-gartenansicht.jpg" alt="Typ 2 Gartenansicht" loading="lazy" decoding="async"></div>
+              <div class="slide"><img src="assets/images/typ-2-strassenansicht.jpg" alt="Typ 2 Straßenansicht" loading="lazy" decoding="async"></div>
+              <div class="slide"><img src="assets/images/innen-typ-2-we1-wohnen-essen-kochen.jpg" alt="Typ 2 Wohnbereich" loading="lazy" decoding="async"></div>
+              <div class="slide"><img src="assets/images/innen-typ-2-we2-bad.jpg" alt="Typ 2 Badezimmer" loading="lazy" decoding="async"></div>
               <button class="slider-arrow prev" type="button" data-slider-prev aria-label="Vorheriges Bild">‹</button>
               <button class="slider-arrow next" type="button" data-slider-next aria-label="Nächstes Bild">›</button>
               <div class="slider-dots" data-slider-dots></div>
@@ -535,10 +549,10 @@
 
           <article class="type-card" id="typ-3">
             <div class="type-gallery slider" data-slider data-autoplay="5400">
-              <div class="slide is-active"><img src="assets/images/typ-3-gartenansicht.jpg" alt="Typ 3 Gartenansicht"></div>
-              <div class="slide"><img src="assets/images/typ-3-strassenansicht.jpg" alt="Typ 3 Straßenansicht"></div>
-              <div class="slide"><img src="assets/images/innen-typ-3-we1-wohnen-essen-kochen.jpg" alt="Typ 3 Wohnbereich"></div>
-              <div class="slide"><img src="assets/images/innen-typ-3-we2-buero.jpg" alt="Typ 3 Büro"></div>
+              <div class="slide is-active"><img src="assets/images/typ-3-gartenansicht.jpg" alt="Typ 3 Gartenansicht" loading="lazy" decoding="async"></div>
+              <div class="slide"><img src="assets/images/typ-3-strassenansicht.jpg" alt="Typ 3 Straßenansicht" loading="lazy" decoding="async"></div>
+              <div class="slide"><img src="assets/images/innen-typ-3-we1-wohnen-essen-kochen.jpg" alt="Typ 3 Wohnbereich" loading="lazy" decoding="async"></div>
+              <div class="slide"><img src="assets/images/innen-typ-3-we2-buero.jpg" alt="Typ 3 Büro" loading="lazy" decoding="async"></div>
               <button class="slider-arrow prev" type="button" data-slider-prev aria-label="Vorheriges Bild">‹</button>
               <button class="slider-arrow next" type="button" data-slider-next aria-label="Nächstes Bild">›</button>
               <div class="slider-dots" data-slider-dots></div>
@@ -628,18 +642,18 @@
         </div>
         <div class="partner-carousel" aria-label="Projektpartner Logo Carousel">
           <div class="partner-track">
-            <img src="assets/images/partner-krauss-gruender.png" alt="Krauß Gründer">
-            <img src="assets/images/partner-kgw-wohnbau.png" alt="KGW Wohnbau">
-            <img src="assets/images/partner-weidlich.png" alt="Weidlich Bauunternehmung">
-            <img src="assets/images/partner-krauss-geruestbau.png" alt="Krauß Gerüstbau">
-            <img src="assets/images/partner-muemken.png" alt="Mümken Sales GmbH">
-            <img src="assets/images/partner-einszueins.png" alt="einszueins Architektur">
-            <img src="assets/images/partner-krauss-gruender.png" alt="">
-            <img src="assets/images/partner-kgw-wohnbau.png" alt="">
-            <img src="assets/images/partner-weidlich.png" alt="">
-            <img src="assets/images/partner-krauss-geruestbau.png" alt="">
-            <img src="assets/images/partner-muemken.png" alt="">
-            <img src="assets/images/partner-einszueins.png" alt="">
+            <img src="assets/images/partner-krauss-gruender.png" alt="Krauß Gründer" loading="lazy" decoding="async">
+            <img src="assets/images/partner-kgw-wohnbau.png" alt="KGW Wohnbau" loading="lazy" decoding="async">
+            <img src="assets/images/partner-weidlich.png" alt="Weidlich Bauunternehmung" loading="lazy" decoding="async">
+            <img src="assets/images/partner-krauss-geruestbau.png" alt="Krauß Gerüstbau" loading="lazy" decoding="async">
+            <img src="assets/images/partner-muemken.png" alt="Mümken Sales GmbH" loading="lazy" decoding="async">
+            <img src="assets/images/partner-einszueins.png" alt="einszueins Architektur" loading="lazy" decoding="async">
+            <img src="assets/images/partner-krauss-gruender.png" alt="" loading="lazy" decoding="async">
+            <img src="assets/images/partner-kgw-wohnbau.png" alt="" loading="lazy" decoding="async">
+            <img src="assets/images/partner-weidlich.png" alt="" loading="lazy" decoding="async">
+            <img src="assets/images/partner-krauss-geruestbau.png" alt="" loading="lazy" decoding="async">
+            <img src="assets/images/partner-muemken.png" alt="" loading="lazy" decoding="async">
+            <img src="assets/images/partner-einszueins.png" alt="" loading="lazy" decoding="async">
           </div>
         </div>
       </section>
@@ -653,7 +667,7 @@
           </div>
           <div class="sparkasse-mark partner-logo-showcase" aria-label="Projektpartner Sparkasse Geseke">
             <div class="partner-logo-card">
-              <img src="assets/images/sparkasse-logo-symbol.png" alt="Sparkasse">
+              <img src="assets/images/sparkasse-logo-symbol.png" alt="Sparkasse" loading="lazy" decoding="async">
             </div>
             <span>Vermarktungspartner seit 1854.</span>
           </div>
@@ -747,7 +761,7 @@
     </main>
 
     <footer class="site-footer">
-      <img src="assets/images/wohnquartier-geseke-west-logo-cropped.png" alt="Wohnquartier Geseke West">
+      <img src="assets/images/wohnquartier-geseke-west-logo-cropped.png" alt="Wohnquartier Geseke West" width="1382" height="344" loading="lazy" decoding="async">
       <div><p>Wohnquartier Geseke West · Geseke</p><p>Vermarktung: Sparkasse Geseke · Seit 1854</p></div>
       <nav aria-label="Rechtliches"><a href="impressum.html">Impressum</a></nav>
     </footer>

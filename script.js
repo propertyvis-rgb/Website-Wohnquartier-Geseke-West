@@ -12,6 +12,27 @@ let galleryButtons = [];
 let activeGalleryIndex = 0;
 let previousFocus = null;
 
+document.querySelectorAll('img[loading="lazy"][src^="assets/images/"]').forEach((image) => {
+  const source = image.getAttribute("src");
+  if (!/\.(?:jpe?g|png)$/i.test(source)) return;
+  if (/(?:logo|sparkasse)/i.test(source) || image.closest(".partner-track")) return;
+
+  const base = source.replace(/\.(?:jpe?g|png)$/i, "");
+  const isAmenityImage = Boolean(image.closest(".amenity-grid"));
+  const isGridThumbnail = Boolean(image.closest(".interior-gallery, .plan-pair, .advisor-grid"));
+  image.srcset = isAmenityImage || isGridThumbnail
+    ? `${base}-640.webp 640w, ${base}-1280.webp 1280w`
+    : `${base}-640.webp 640w, ${base}-1280.webp 1280w, ${base}-1920.webp 1920w`;
+  image.sizes = isAmenityImage
+    ? "(min-width: 1000px) 20vw, (min-width: 620px) 50vw, 100vw"
+    : image.closest(".interior-gallery, .plan-pair, .advisor-grid")
+      ? "(min-width: 1100px) 25vw, (min-width: 620px) 50vw, 100vw"
+      : image.closest(".type-gallery")
+        ? "(min-width: 900px) 50vw, 100vw"
+        : "(min-width: 1320px) 1320px, 100vw";
+  image.decoding = "async";
+});
+
 if (menuToggle && header) {
   menuToggle.addEventListener("click", () => {
     const isOpen = header.classList.toggle("menu-open");
