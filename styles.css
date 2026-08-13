@@ -377,11 +377,11 @@ figcaption { padding: 12px 14px; color: var(--muted); font-size: 14px; font-weig
 .apartment-buildings-media { min-width: 0; }
 .apartment-buildings-visual { margin: 0; overflow: hidden; border-radius: var(--radius); box-shadow: var(--shadow); }
 .apartment-buildings-visual img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 58% center; }
-.apartment-buildings-specs { display: grid; grid-template-columns: .65fr .9fr 1.35fr; margin: 14px 0 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.apartment-buildings-specs div { min-width: 0; padding: 13px 14px; }
+.apartment-buildings-specs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 14px 0 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.apartment-buildings-specs div { min-width: 0; padding: 14px 18px; }
 .apartment-buildings-specs div + div { border-left: 1px solid var(--line); }
 .apartment-buildings-specs dt { color: var(--ink); font-size: 15px; font-weight: 900; line-height: 1.2; }
-.apartment-buildings-specs dd { margin: 4px 0 0; color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: .04em; line-height: 1.3; }
+.apartment-buildings-specs dd { margin: 4px 0 0; color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: .02em; line-height: 1.3; overflow-wrap: anywhere; }
 .lead-form { display: grid; gap: 16px; padding: clamp(24px, 4vw, 38px); background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
 .lead-form label { display: grid; gap: 8px; color: var(--muted); font-size: 14px; font-weight: 900; }
 .lead-form input, .lead-form select, .lead-form textarea {
