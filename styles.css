@@ -296,12 +296,13 @@ figcaption { padding: 12px 14px; color: var(--muted); font-size: 14px; font-weig
 .trust { max-width: none; padding-left: clamp(20px, 4vw, 56px); padding-right: clamp(20px, 4vw, 56px); background: var(--trust-blue); color: var(--ink); }
 .trust > * { max-width: var(--max); margin-left: auto; margin-right: auto; }
 .trust .section-kicker { color: var(--red); }
-.trust-panel { display: grid; grid-template-columns: 1fr minmax(240px, 340px); gap: 34px; align-items: center; margin-bottom: 32px; }
+.trust-panel { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; align-items: center; margin-bottom: 32px; }
+.trust-panel > :first-child { grid-column: span 3; }
 .trust-panel p { color: rgba(32, 33, 36, .72); }
 .sparkasse-mark { display: grid; align-content: center; justify-items: center; min-height: 220px; padding: 28px; background: rgba(255,255,255,.22); border: 1px solid rgba(255,255,255,.42); border-radius: var(--radius); text-align: center; box-shadow: 0 18px 45px rgba(44, 39, 29, .08); }
 .partner-logo-card { display: grid; place-items: center; width: 100%; min-height: 132px; padding: 24px; background: var(--white); border: 1px solid rgba(255,255,255,.76); border-radius: var(--radius); box-shadow: 0 18px 42px rgba(44, 39, 29, .10); }
 .partner-logo-card img { width: min(100%, 220px); max-height: 118px; object-fit: contain; }
-.sparkasse-mark .partner-logo-card { background: #ed0000; border-color: #ed0000; }
+.sparkasse-mark .partner-logo-card { background: #e3051a; border-color: #e3051a; }
 .sparkasse-mark span { margin-top: 18px; color: rgba(32, 33, 36, .72); }
 .advisor-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; align-items: stretch; }
 .advisor-grid article {
@@ -370,10 +371,11 @@ figcaption { padding: 12px 14px; color: var(--muted); font-size: 14px; font-weig
 .contact-badge { display: grid; gap: 4px; margin-top: 28px; padding: 20px; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-soft); }
 .contact-badge svg { margin-bottom: 6px; }
 .contact-badge span { color: var(--muted); }
-.apartment-buildings-layout { display: grid; grid-template-columns: minmax(0, .9fr) minmax(420px, 1.1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+.apartment-buildings-layout { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(36px, 4vw, 64px); align-items: center; }
 .apartment-buildings-layout .section-heading { margin-bottom: 0; }
+.apartment-buildings-layout .section-heading h2 { font-size: clamp(34px, 3.2vw, 48px); overflow-wrap: break-word; hyphens: auto; }
 .apartment-buildings-visual { margin: 0; overflow: hidden; border-radius: var(--radius); box-shadow: var(--shadow); }
-.apartment-buildings-visual img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: center; }
+.apartment-buildings-visual img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 58% center; }
 .lead-form { display: grid; gap: 16px; padding: clamp(24px, 4vw, 38px); background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
 .lead-form label { display: grid; gap: 8px; color: var(--muted); font-size: 14px; font-weight: 900; }
 .lead-form input, .lead-form select, .lead-form textarea {
@@ -609,6 +611,8 @@ figcaption { padding: 12px 14px; color: var(--muted); font-size: 14px; font-weig
     box-shadow: var(--shadow);
   }
   .quick-facts, .advisor-grid { grid-template-columns: repeat(2, 1fr); }
+  .trust-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .trust-panel > :first-child { grid-column: span 1; }
   .amenity-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .amenity-card, .amenity-card:nth-child(n+4) { grid-column: auto; }
   .plan-pair, .interior-gallery { grid-template-columns: repeat(2, 1fr); }
@@ -646,6 +650,7 @@ figcaption { padding: 12px 14px; color: var(--muted); font-size: 14px; font-weig
   .partner-track { gap: 30px; padding: 24px 30px; }
   .partner-track img { width: 150px; height: 68px; }
   .trust-panel, .site-footer { grid-template-columns: 1fr; }
+  .trust-panel > :first-child { grid-column: span 1; }
   .advisor-grid article h3, .advisor-details { min-height: auto; }
   .advisor-photo { height: 260px; }
   .location-map { min-height: 420px; aspect-ratio: auto; }
