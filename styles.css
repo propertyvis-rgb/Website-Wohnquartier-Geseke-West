@@ -377,7 +377,7 @@ figcaption { padding: 12px 14px; color: var(--muted); font-size: 14px; font-weig
 .apartment-buildings-layout .section-heading h2 { max-width: 18ch; font-size: clamp(32px, 2.65vw, 43px); line-height: 1.08; overflow-wrap: normal; word-break: normal; hyphens: none; }
 .apartment-buildings-media { min-width: 0; }
 .apartment-buildings-visual { margin: 0; overflow: hidden; border-radius: var(--radius); box-shadow: var(--shadow); }
-.apartment-buildings-visual img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: right 70%; transform: scale(1.22); transform-origin: 88% 70%; }
+.apartment-buildings-visual img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: right 72%; transform: scale(1.48); transform-origin: 94% 72%; }
 .apartment-buildings-specs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 14px 0 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .apartment-buildings-specs div { min-width: 0; padding: 14px 18px; }
 .apartment-buildings-specs div + div { border-left: 1px solid var(--line); }
@@ -663,7 +663,7 @@ figcaption { padding: 12px 14px; color: var(--muted); font-size: 14px; font-weig
   .advisor-photo { height: 260px; }
   .location-map { min-height: 420px; aspect-ratio: auto; }
   .apartment-buildings-layout .section-heading h2 { max-width: none; font-size: clamp(28px, 9vw, 36px); }
-  .apartment-buildings-visual img { aspect-ratio: 4 / 3; object-position: right 70%; transform: scale(1.22); transform-origin: 88% 70%; }
+  .apartment-buildings-visual img { aspect-ratio: 4 / 3; object-position: right 72%; transform: scale(1.48); transform-origin: 94% 72%; }
   .apartment-buildings-specs { grid-template-columns: 1fr; }
   .apartment-buildings-specs div { padding: 11px 4px; }
   .apartment-buildings-specs div + div { border-top: 1px solid var(--line); border-left: 0; }
