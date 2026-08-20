@@ -10,7 +10,7 @@
     <link rel="preload" href="assets/images/hero-aerial-primary.jpg" as="image" fetchpriority="high">
     <link rel="preload" href="assets/images/hero-exterior.jpg" as="image">
     <link rel="preload" href="assets/images/hero-interior.jpg" as="image">
-    <link rel="stylesheet" href="styles.css?v=20260820-vimeo-refined">
+    <link rel="stylesheet" href="styles.css?v=20260820-vimeo-controls-visibility">
     <script>
       if (new URLSearchParams(window.location.search).get("view") === "original") {
         document.documentElement.classList.add("show-original-homepage");
@@ -447,7 +447,7 @@
             referrerpolicy="strict-origin-when-cross-origin"
             allowfullscreen
           ></iframe>
-          <button class="vimeo-interaction-layer" type="button" data-vimeo-reveal-controls aria-label="Videosteuerung anzeigen"></button>
+          <div class="vimeo-interaction-layer" data-vimeo-reveal-controls aria-hidden="true"></div>
           <div class="vimeo-controls" aria-label="Videosteuerung">
             <button type="button" data-vimeo-seek="-30" aria-label="30 Sekunden zurückspulen" title="30 Sekunden zurückspulen">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7v5h5M5.5 11a7 7 0 1 1 1.3 6.3"/></svg><span>30</span>
@@ -812,6 +812,6 @@
     </div>
 
     <script src="https://player.vimeo.com/api/player.js"></script>
-    <script src="script.js?v=20260820-vimeo-refined"></script>
+    <script src="script.js?v=20260820-vimeo-controls-visibility"></script>
   </body>
 </html>

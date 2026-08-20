@@ -317,4 +317,9 @@ if (vimeoViewportHost && vimeoViewportFrame) {
   document.addEventListener("visibilitychange", updateVimeoPlayback);
   vimeoRevealButton?.addEventListener("pointerdown", showVimeoControls);
   vimeoViewportHost.addEventListener("pointermove", showVimeoControls);
+  vimeoViewportHost.addEventListener("pointerleave", () => {
+    if (!window.matchMedia("(hover: hover)").matches) return;
+    window.clearTimeout(controlsHideTimer);
+    vimeoViewportHost.classList.remove("controls-visible");
+  });
 }
