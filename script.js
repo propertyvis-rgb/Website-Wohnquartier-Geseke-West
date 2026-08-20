@@ -188,14 +188,20 @@ const vimeoViewportFrame = vimeoViewportHost?.querySelector("iframe");
 if (vimeoViewportHost && vimeoViewportFrame && window.Vimeo?.Player) {
   const vimeoViewportPlayer = new Vimeo.Player(vimeoViewportFrame);
   let vimeoIsVisible = false;
+  let vimeoIsReady = false;
 
   const updateVimeoPlayback = () => {
+    if (!vimeoIsReady) return;
+
     if (vimeoIsVisible && !document.hidden) {
-      vimeoViewportPlayer.setMuted(true).then(() => vimeoViewportPlayer.play()).catch(() => {});
+      vimeoViewportPlayer.setMuted(true)
+        .then(() => vimeoViewportPlayer.play())
+        .catch((error) => console.warn("Vimeo playback could not start:", error));
       return;
     }
 
-    vimeoViewportPlayer.pause().catch(() => {});
+    vimeoViewportPlayer.pause()
+      .catch((error) => console.warn("Vimeo playback could not pause:", error));
   };
 
   const vimeoObserver = new IntersectionObserver((entries) => {
@@ -205,4 +211,12 @@ if (vimeoViewportHost && vimeoViewportFrame && window.Vimeo?.Player) {
 
   vimeoObserver.observe(vimeoViewportHost);
   document.addEventListener("visibilitychange", updateVimeoPlayback);
+
+  vimeoViewportPlayer.ready()
+    .then(() => vimeoViewportPlayer.setMuted(true))
+    .then(() => {
+      vimeoIsReady = true;
+      updateVimeoPlayback();
+    })
+    .catch((error) => console.error("Vimeo player failed to initialize:", error));
 }
