@@ -184,6 +184,9 @@ document.addEventListener("keydown", (event) => {
 
 const vimeoViewportHost = document.querySelector("[data-vimeo-viewport-player]");
 const vimeoViewportFrame = vimeoViewportHost?.querySelector("iframe");
+const vimeoToggleButton = vimeoViewportHost?.querySelector("[data-vimeo-toggle]");
+const vimeoMuteButton = vimeoViewportHost?.querySelector("[data-vimeo-mute]");
+const vimeoSeekButtons = vimeoViewportHost?.querySelectorAll("[data-vimeo-seek]") ?? [];
 
 if (vimeoViewportHost && vimeoViewportFrame && window.Vimeo?.Player) {
   const vimeoViewportPlayer = new Vimeo.Player(vimeoViewportFrame);
@@ -194,8 +197,7 @@ if (vimeoViewportHost && vimeoViewportFrame && window.Vimeo?.Player) {
     if (!vimeoIsReady) return;
 
     if (vimeoIsVisible && !document.hidden) {
-      vimeoViewportPlayer.setMuted(true)
-        .then(() => vimeoViewportPlayer.play())
+      vimeoViewportPlayer.play()
         .catch((error) => console.warn("Vimeo playback could not start:", error));
       return;
     }
@@ -212,9 +214,51 @@ if (vimeoViewportHost && vimeoViewportFrame && window.Vimeo?.Player) {
   vimeoObserver.observe(vimeoViewportHost);
   document.addEventListener("visibilitychange", updateVimeoPlayback);
 
+  const updatePlayControl = (isPaused) => {
+    if (!vimeoToggleButton) return;
+    vimeoToggleButton.textContent = isPaused ? "▶" : "❚❚";
+    vimeoToggleButton.setAttribute("aria-label", isPaused ? "Video abspielen" : "Video pausieren");
+    vimeoToggleButton.title = isPaused ? "Abspielen" : "Pausieren";
+  };
+
+  const updateMuteControl = (isMuted) => {
+    if (!vimeoMuteButton) return;
+    vimeoMuteButton.textContent = isMuted ? "🔇" : "🔊";
+    vimeoMuteButton.setAttribute("aria-label", isMuted ? "Ton einschalten" : "Ton ausschalten");
+    vimeoMuteButton.title = isMuted ? "Ton einschalten" : "Ton ausschalten";
+  };
+
+  vimeoToggleButton?.addEventListener("click", () => {
+    vimeoViewportPlayer.getPaused()
+      .then((isPaused) => isPaused ? vimeoViewportPlayer.play() : vimeoViewportPlayer.pause())
+      .catch((error) => console.warn("Vimeo play/pause control failed:", error));
+  });
+
+  vimeoSeekButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const offset = Number(button.dataset.vimeoSeek);
+      Promise.all([vimeoViewportPlayer.getCurrentTime(), vimeoViewportPlayer.getDuration()])
+        .then(([currentTime, duration]) => vimeoViewportPlayer.setCurrentTime(Math.min(duration, Math.max(0, currentTime + offset))))
+        .catch((error) => console.warn("Vimeo seek control failed:", error));
+    });
+  });
+
+  vimeoMuteButton?.addEventListener("click", () => {
+    vimeoViewportPlayer.getMuted()
+      .then((isMuted) => vimeoViewportPlayer.setMuted(!isMuted))
+      .catch((error) => console.warn("Vimeo mute control failed:", error));
+  });
+
+  vimeoViewportPlayer.on("play", () => updatePlayControl(false));
+  vimeoViewportPlayer.on("pause", () => updatePlayControl(true));
+  vimeoViewportPlayer.on("volumechange", (state) => updateMuteControl(state.muted || state.volume === 0));
+
   vimeoViewportPlayer.ready()
     .then(() => vimeoViewportPlayer.setMuted(true))
-    .then(() => {
+    .then(() => Promise.all([vimeoViewportPlayer.getPaused(), vimeoViewportPlayer.getMuted()]))
+    .then(([isPaused, isMuted]) => {
+      updatePlayControl(isPaused);
+      updateMuteControl(isMuted);
       vimeoIsReady = true;
       updateVimeoPlayback();
     })

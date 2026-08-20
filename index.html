@@ -447,6 +447,12 @@
             referrerpolicy="strict-origin-when-cross-origin"
             allowfullscreen
           ></iframe>
+          <div class="vimeo-controls" aria-label="Videosteuerung">
+            <button type="button" data-vimeo-seek="-30" aria-label="30 Sekunden zurückspulen" title="30 Sekunden zurückspulen">↶ <span>30s</span></button>
+            <button type="button" data-vimeo-toggle aria-label="Video abspielen" title="Abspielen">▶</button>
+            <button type="button" data-vimeo-seek="30" aria-label="30 Sekunden vorspulen" title="30 Sekunden vorspulen"><span>30s</span> ↷</button>
+            <button type="button" data-vimeo-mute aria-label="Ton einschalten" title="Ton einschalten">🔇</button>
+          </div>
         </div>
       </section>
 
@@ -795,6 +801,6 @@
     </div>
 
     <script src="https://player.vimeo.com/api/player.js"></script>
-    <script src="script.js?v=20260820-vimeo-ready"></script>
+    <script src="script.js?v=20260820-vimeo-controls"></script>
   </body>
 </html>
