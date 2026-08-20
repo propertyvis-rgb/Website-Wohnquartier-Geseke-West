@@ -171,6 +171,8 @@ h4 { margin: 0 0 16px; font-size: 21px; }
 .split { display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); gap: clamp(34px, 7vw, 86px); align-items: start; }
 .lead-stack, .section-heading p:not(.section-kicker), .feature-grid article p, .type-card p, .advisor-grid p, .partners .split > p, .type-info dd { color: var(--muted); }
 .lead-stack { font-size: 19px; }
+.section.intro { display: block; }
+.section.intro > .section-kicker, .section.intro > .intro-copy, .section.intro > .intro-video-slot { grid-column: auto; grid-row: auto; float: none; width: 100%; }
 .intro-copy { display: grid; gap: clamp(20px, 3vw, 30px); max-width: 940px; }
 .intro-copy h2 { margin: 0; }
 .intro-copy .lead-stack { max-width: 840px; }
