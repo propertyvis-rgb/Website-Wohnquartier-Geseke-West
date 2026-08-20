@@ -181,3 +181,28 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowLeft") showGalleryImage(activeGalleryIndex - 1);
   if (event.key === "ArrowRight") showGalleryImage(activeGalleryIndex + 1);
 });
+
+const vimeoViewportHost = document.querySelector("[data-vimeo-viewport-player]");
+const vimeoViewportFrame = vimeoViewportHost?.querySelector("iframe");
+
+if (vimeoViewportHost && vimeoViewportFrame && window.Vimeo?.Player) {
+  const vimeoViewportPlayer = new Vimeo.Player(vimeoViewportFrame);
+  let vimeoIsVisible = false;
+
+  const updateVimeoPlayback = () => {
+    if (vimeoIsVisible && !document.hidden) {
+      vimeoViewportPlayer.setMuted(true).then(() => vimeoViewportPlayer.play()).catch(() => {});
+      return;
+    }
+
+    vimeoViewportPlayer.pause().catch(() => {});
+  };
+
+  const vimeoObserver = new IntersectionObserver((entries) => {
+    vimeoIsVisible = entries[0]?.isIntersecting ?? false;
+    updateVimeoPlayback();
+  }, { threshold: 0.4 });
+
+  vimeoObserver.observe(vimeoViewportHost);
+  document.addEventListener("visibilitychange", updateVimeoPlayback);
+}
