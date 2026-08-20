@@ -187,14 +187,18 @@ const vimeoViewportFrame = vimeoViewportHost?.querySelector("iframe");
 const vimeoToggleButton = vimeoViewportHost?.querySelector("[data-vimeo-toggle]");
 const vimeoMuteButton = vimeoViewportHost?.querySelector("[data-vimeo-mute]");
 const vimeoSeekButtons = vimeoViewportHost?.querySelectorAll("[data-vimeo-seek]") ?? [];
+const vimeoRevealButton = vimeoViewportHost?.querySelector("[data-vimeo-reveal-controls]");
 
-if (vimeoViewportHost && vimeoViewportFrame && window.Vimeo?.Player) {
-  const vimeoViewportPlayer = new Vimeo.Player(vimeoViewportFrame);
+if (vimeoViewportHost && vimeoViewportFrame) {
+  let vimeoViewportPlayer;
   let vimeoIsVisible = false;
   let vimeoIsReady = false;
+  let vimeoHasLoaded = false;
+  let lastAudibleVolume = 1;
+  let controlsHideTimer;
 
   const updateVimeoPlayback = () => {
-    if (!vimeoIsReady) return;
+    if (!vimeoIsReady || !vimeoViewportPlayer) return;
 
     if (vimeoIsVisible && !document.hidden) {
       vimeoViewportPlayer.play()
@@ -206,61 +210,111 @@ if (vimeoViewportHost && vimeoViewportFrame && window.Vimeo?.Player) {
       .catch((error) => console.warn("Vimeo playback could not pause:", error));
   };
 
-  const vimeoObserver = new IntersectionObserver((entries) => {
-    vimeoIsVisible = entries[0]?.isIntersecting ?? false;
-    updateVimeoPlayback();
-  }, { threshold: 0.4 });
-
-  vimeoObserver.observe(vimeoViewportHost);
-  document.addEventListener("visibilitychange", updateVimeoPlayback);
+  const showVimeoControls = () => {
+    vimeoViewportHost.classList.add("controls-visible");
+    window.clearTimeout(controlsHideTimer);
+    controlsHideTimer = window.setTimeout(() => {
+      vimeoViewportHost.classList.remove("controls-visible");
+    }, 2800);
+  };
 
   const updatePlayControl = (isPaused) => {
     if (!vimeoToggleButton) return;
-    vimeoToggleButton.textContent = isPaused ? "▶" : "❚❚";
+    vimeoToggleButton.querySelector("[data-vimeo-play-icon]")?.toggleAttribute("hidden", !isPaused);
+    vimeoToggleButton.querySelector("[data-vimeo-pause-icon]")?.toggleAttribute("hidden", isPaused);
     vimeoToggleButton.setAttribute("aria-label", isPaused ? "Video abspielen" : "Video pausieren");
     vimeoToggleButton.title = isPaused ? "Abspielen" : "Pausieren";
   };
 
   const updateMuteControl = (isMuted) => {
     if (!vimeoMuteButton) return;
-    vimeoMuteButton.textContent = isMuted ? "🔇" : "🔊";
+    vimeoMuteButton.querySelector("[data-vimeo-muted-icon]")?.toggleAttribute("hidden", !isMuted);
+    vimeoMuteButton.querySelector("[data-vimeo-audible-icon]")?.toggleAttribute("hidden", isMuted);
     vimeoMuteButton.setAttribute("aria-label", isMuted ? "Ton einschalten" : "Ton ausschalten");
     vimeoMuteButton.title = isMuted ? "Ton einschalten" : "Ton ausschalten";
   };
 
-  vimeoToggleButton?.addEventListener("click", () => {
-    vimeoViewportPlayer.getPaused()
-      .then((isPaused) => isPaused ? vimeoViewportPlayer.play() : vimeoViewportPlayer.pause())
-      .catch((error) => console.warn("Vimeo play/pause control failed:", error));
-  });
+  const initializeVimeoPlayer = () => {
+    if (vimeoHasLoaded) return;
+    vimeoHasLoaded = true;
 
-  vimeoSeekButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const offset = Number(button.dataset.vimeoSeek);
-      Promise.all([vimeoViewportPlayer.getCurrentTime(), vimeoViewportPlayer.getDuration()])
-        .then(([currentTime, duration]) => vimeoViewportPlayer.setCurrentTime(Math.min(duration, Math.max(0, currentTime + offset))))
-        .catch((error) => console.warn("Vimeo seek control failed:", error));
+    if (!window.Vimeo?.Player) {
+      console.error("Vimeo Player API is unavailable.");
+      return;
+    }
+
+    vimeoViewportFrame.addEventListener("load", () => vimeoViewportHost.classList.add("is-loaded"), { once: true });
+    vimeoViewportFrame.src = vimeoViewportFrame.dataset.vimeoSrc;
+    vimeoViewportPlayer = new Vimeo.Player(vimeoViewportFrame);
+
+    vimeoToggleButton?.addEventListener("click", () => {
+      showVimeoControls();
+      vimeoViewportPlayer.getPaused()
+        .then((isPaused) => isPaused ? vimeoViewportPlayer.play() : vimeoViewportPlayer.pause())
+        .catch((error) => console.warn("Vimeo play/pause control failed:", error));
     });
-  });
 
-  vimeoMuteButton?.addEventListener("click", () => {
-    vimeoViewportPlayer.getMuted()
-      .then((isMuted) => vimeoViewportPlayer.setMuted(!isMuted))
-      .catch((error) => console.warn("Vimeo mute control failed:", error));
-  });
+    vimeoSeekButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        showVimeoControls();
+        const offset = Number(button.dataset.vimeoSeek);
+        Promise.all([vimeoViewportPlayer.getCurrentTime(), vimeoViewportPlayer.getDuration()])
+          .then(([currentTime, duration]) => vimeoViewportPlayer.setCurrentTime(Math.min(duration, Math.max(0, currentTime + offset))))
+          .catch((error) => console.warn("Vimeo seek control failed:", error));
+      });
+    });
 
-  vimeoViewportPlayer.on("play", () => updatePlayControl(false));
-  vimeoViewportPlayer.on("pause", () => updatePlayControl(true));
-  vimeoViewportPlayer.on("volumechange", (state) => updateMuteControl(state.muted || state.volume === 0));
+    vimeoMuteButton?.addEventListener("click", () => {
+      showVimeoControls();
+      Promise.all([vimeoViewportPlayer.getMuted(), vimeoViewportPlayer.getVolume()])
+        .then(([isMuted, volume]) => {
+          if (isMuted || volume === 0) {
+            const restoredVolume = Math.max(.1, lastAudibleVolume || 1);
+            return vimeoViewportPlayer.setMuted(false)
+              .then(() => vimeoViewportPlayer.setVolume(restoredVolume));
+          }
 
-  vimeoViewportPlayer.ready()
-    .then(() => vimeoViewportPlayer.setMuted(true))
-    .then(() => Promise.all([vimeoViewportPlayer.getPaused(), vimeoViewportPlayer.getMuted()]))
-    .then(([isPaused, isMuted]) => {
-      updatePlayControl(isPaused);
-      updateMuteControl(isMuted);
-      vimeoIsReady = true;
-      updateVimeoPlayback();
-    })
-    .catch((error) => console.error("Vimeo player failed to initialize:", error));
+          lastAudibleVolume = volume;
+          return vimeoViewportPlayer.setMuted(true);
+        })
+        .then(() => Promise.all([vimeoViewportPlayer.getMuted(), vimeoViewportPlayer.getVolume()]))
+        .then(([isMuted, volume]) => updateMuteControl(isMuted || volume === 0))
+        .catch((error) => console.warn("Vimeo mute control failed:", error));
+    });
+
+    vimeoViewportPlayer.on("play", () => updatePlayControl(false));
+    vimeoViewportPlayer.on("pause", () => updatePlayControl(true));
+    vimeoViewportPlayer.on("volumechange", (state) => {
+      if (!state.muted && state.volume > 0) lastAudibleVolume = state.volume;
+      updateMuteControl(state.muted || state.volume === 0);
+    });
+
+    vimeoViewportPlayer.ready()
+      .then(() => vimeoViewportPlayer.setMuted(true))
+      .then(() => Promise.all([vimeoViewportPlayer.getPaused(), vimeoViewportPlayer.getMuted()]))
+      .then(([isPaused, isMuted]) => {
+        updatePlayControl(isPaused);
+        updateMuteControl(isMuted);
+        vimeoIsReady = true;
+        updateVimeoPlayback();
+      })
+      .catch((error) => console.error("Vimeo player failed to initialize:", error));
+  };
+
+  const vimeoPlaybackObserver = new IntersectionObserver((entries) => {
+    vimeoIsVisible = entries[0]?.isIntersecting ?? false;
+    updateVimeoPlayback();
+  }, { threshold: 0.4 });
+
+  const vimeoPreloadObserver = new IntersectionObserver((entries, observer) => {
+    if (!entries[0]?.isIntersecting) return;
+    initializeVimeoPlayer();
+    observer.disconnect();
+  }, { rootMargin: "600px 0px", threshold: 0 });
+
+  vimeoPlaybackObserver.observe(vimeoViewportHost);
+  vimeoPreloadObserver.observe(vimeoViewportHost);
+  document.addEventListener("visibilitychange", updateVimeoPlayback);
+  vimeoRevealButton?.addEventListener("pointerdown", showVimeoControls);
+  vimeoViewportHost.addEventListener("pointermove", showVimeoControls);
 }

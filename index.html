@@ -10,7 +10,7 @@
     <link rel="preload" href="assets/images/hero-aerial-primary.jpg" as="image" fetchpriority="high">
     <link rel="preload" href="assets/images/hero-exterior.jpg" as="image">
     <link rel="preload" href="assets/images/hero-interior.jpg" as="image">
-    <link rel="stylesheet" href="styles.css?v=20260811-lightbox-groups">
+    <link rel="stylesheet" href="styles.css?v=20260820-vimeo-refined">
     <script>
       if (new URLSearchParams(window.location.search).get("view") === "original") {
         document.documentElement.classList.add("show-original-homepage");
@@ -441,17 +441,28 @@
         </div>
         <div class="intro-video-slot" data-vimeo-viewport-player>
           <iframe
-            src="https://player.vimeo.com/video/1219851218?autoplay=0&amp;muted=1&amp;loop=1&amp;controls=0&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1&amp;playsinline=1"
+            data-vimeo-src="https://player.vimeo.com/video/1219851218?autoplay=0&amp;muted=1&amp;loop=1&amp;controls=0&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1&amp;playsinline=1"
             title="Wohnquartier Geseke West"
             allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
             referrerpolicy="strict-origin-when-cross-origin"
             allowfullscreen
           ></iframe>
+          <button class="vimeo-interaction-layer" type="button" data-vimeo-reveal-controls aria-label="Videosteuerung anzeigen"></button>
           <div class="vimeo-controls" aria-label="Videosteuerung">
-            <button type="button" data-vimeo-seek="-30" aria-label="30 Sekunden zurückspulen" title="30 Sekunden zurückspulen">↶ <span>30s</span></button>
-            <button type="button" data-vimeo-toggle aria-label="Video abspielen" title="Abspielen">▶</button>
-            <button type="button" data-vimeo-seek="30" aria-label="30 Sekunden vorspulen" title="30 Sekunden vorspulen"><span>30s</span> ↷</button>
-            <button type="button" data-vimeo-mute aria-label="Ton einschalten" title="Ton einschalten">🔇</button>
+            <button type="button" data-vimeo-seek="-30" aria-label="30 Sekunden zurückspulen" title="30 Sekunden zurückspulen">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7v5h5M5.5 11a7 7 0 1 1 1.3 6.3"/></svg><span>30</span>
+            </button>
+            <button type="button" data-vimeo-toggle aria-label="Video abspielen" title="Abspielen">
+              <svg data-vimeo-play-icon viewBox="0 0 24 24" aria-hidden="true"><path d="m9 7 8 5-8 5Z"/></svg>
+              <svg data-vimeo-pause-icon viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M9 7v10M15 7v10"/></svg>
+            </button>
+            <button type="button" data-vimeo-seek="30" aria-label="30 Sekunden vorspulen" title="30 Sekunden vorspulen">
+              <span>30</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M18.5 11a7 7 0 1 0-1.3 6.3"/></svg>
+            </button>
+            <button type="button" data-vimeo-mute aria-label="Ton einschalten" title="Ton einschalten">
+              <svg data-vimeo-muted-icon viewBox="0 0 24 24" aria-hidden="true"><path d="M5 10v4h3l4 3V7L8 10H5ZM16 10l4 4M20 10l-4 4"/></svg>
+              <svg data-vimeo-audible-icon viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M5 10v4h3l4 3V7L8 10H5ZM16 9a4 4 0 0 1 0 6M18 6a8 8 0 0 1 0 12"/></svg>
+            </button>
           </div>
         </div>
       </section>
@@ -801,6 +812,6 @@
     </div>
 
     <script src="https://player.vimeo.com/api/player.js"></script>
-    <script src="script.js?v=20260820-vimeo-controls"></script>
+    <script src="script.js?v=20260820-vimeo-refined"></script>
   </body>
 </html>
