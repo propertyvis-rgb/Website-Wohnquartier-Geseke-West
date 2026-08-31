@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Wohnquartier Geseke West | Coming Soon</title>
-    <meta name="description" content="Wohnquartier Geseke West: Die Projektwebsite befindet sich derzeit im Aufbau. Weitere Informationen folgen in Kürze.">
+    <title>Wohnquartier Geseke West</title>
+    <meta name="description" content="Wohnquartier Geseke West: Moderne Häuser, Grundrisse und Wohnvarianten in Geseke.">
     <meta name="theme-color" content="#EE0000">
     <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="preload" href="assets/images/hero-aerial-primary.jpg" as="image" fetchpriority="high">
@@ -12,8 +12,8 @@
     <link rel="preload" href="assets/images/hero-interior.jpg" as="image">
     <link rel="stylesheet" href="styles.css?v=20260820-vimeo-vertical-v2">
     <script>
-      if (new URLSearchParams(window.location.search).get("view") === "original") {
-        document.documentElement.classList.add("show-original-homepage");
+      if (new URLSearchParams(window.location.search).get("view") === "coming-soon-draft") {
+        document.documentElement.classList.add("show-coming-soon-draft");
       }
     </script>
     <style>
@@ -35,34 +35,22 @@
         background: var(--coming-soon-paper);
       }
 
-      body > .icon-sprite,
-      body > .site-header,
-      body > main#start,
-      body > .site-footer,
-      body > .lightbox {
+      body > .coming-soon-page,
+      body > .coming-soon-footer {
         display: none !important;
       }
 
-      html.show-original-homepage body > .coming-soon-page,
-      html.show-original-homepage body > .coming-soon-footer {
+      html.show-coming-soon-draft body > .icon-sprite,
+      html.show-coming-soon-draft body > .site-header,
+      html.show-coming-soon-draft body > main#start,
+      html.show-coming-soon-draft body > .site-footer,
+      html.show-coming-soon-draft body > .lightbox {
         display: none !important;
       }
 
-      html.show-original-homepage body > .icon-sprite {
-        display: block !important;
-      }
-
-      html.show-original-homepage body > .site-header,
-      html.show-original-homepage body > .site-footer {
-        display: grid !important;
-      }
-
-      html.show-original-homepage body > main#start {
-        display: block !important;
-      }
-
-      html.show-original-homepage body > .lightbox {
-        display: grid !important;
+      html.show-coming-soon-draft body > .coming-soon-page,
+      html.show-coming-soon-draft body > .coming-soon-footer {
+        display: flex !important;
       }
 
       .coming-soon-page {
