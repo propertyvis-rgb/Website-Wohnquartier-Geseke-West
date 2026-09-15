@@ -182,7 +182,7 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowRight") showGalleryImage(activeGalleryIndex + 1);
 });
 
-const vimeoViewportHost = document.querySelector("[data-vimeo-viewport-player]");
+document.querySelectorAll("[data-vimeo-viewport-player]").forEach((vimeoViewportHost) => {
 const vimeoViewportFrame = vimeoViewportHost?.querySelector("iframe");
 const vimeoToggleButton = vimeoViewportHost?.querySelector("[data-vimeo-toggle]");
 const vimeoMuteButton = vimeoViewportHost?.querySelector("[data-vimeo-mute]");
@@ -323,3 +323,4 @@ if (vimeoViewportHost && vimeoViewportFrame) {
     vimeoViewportHost.classList.remove("controls-visible");
   });
 }
+});

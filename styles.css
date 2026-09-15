@@ -276,6 +276,11 @@ figcaption { padding: 12px 14px; color: var(--muted); font-size: 14px; font-weig
 .gallery-trigger:focus-visible { outline: 3px solid rgba(238, 0, 0, .28); outline-offset: 3px; }
 .interior-gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
 .interior-gallery figure img { aspect-ratio: 4 / 3; min-height: 0; object-fit: cover; }
+@media (max-width: 360px) {
+  .interior-type-grid .vimeo-controls { gap: 0; }
+  .interior-type-grid .vimeo-controls button { min-width: 30px; padding: 0 4px; gap: 2px; }
+  .interior-type-grid .vimeo-controls svg { width: 16px; height: 16px; }
+}
 
 .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .feature-grid.compact { grid-template-columns: 1fr; }
