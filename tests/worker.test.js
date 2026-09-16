@@ -182,7 +182,7 @@ test("public form preserves recipients and adds only approved routing fields", a
   const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
   assert.match(html, /action="https:\/\/formsubmit\.co\/alexander\.laumeier@sparkasse-geseke\.de"/);
   assert.match(html, /name="_cc" value="immobilien@sparkasse-geseke\.de"/);
-  assert.match(html, /name="_webhook"/);
+  assert.match(html, /name="_webhook" value="https:\/\/wohnen\.wohnquartier-geseke-west\.de\/api\/webhooks\/formsubmit"/);
   assert.match(html, /name="Formularquelle"/);
   assert.match(html, /name="Formularseite"/);
 });

@@ -30,7 +30,7 @@ if (menuToggle && header) {
   });
 }
 
-if (leadForm && formNote) {
+if (leadForm) {
   const pageField = leadForm.querySelector("[data-form-page]");
   const webhookField = leadForm.querySelector("[data-webhook-url]");
 
@@ -41,14 +41,18 @@ if (leadForm && formNote) {
     if (pageField) pageField.value = window.location.href;
     if (!leadForm.checkValidity()) {
       event.preventDefault();
-      formNote.textContent = "Bitte füllen Sie die Pflichtfelder aus.";
-      formNote.style.color = "#EE0000";
+      if (formNote) {
+        formNote.textContent = "Bitte füllen Sie die Pflichtfelder aus.";
+        formNote.style.color = "#EE0000";
+      }
       leadForm.reportValidity();
       return;
     }
 
-    formNote.textContent = "Vielen Dank. Ihre Anfrage wird jetzt übermittelt.";
-    formNote.style.color = "#395746";
+    if (formNote) {
+      formNote.textContent = "Vielen Dank. Ihre Anfrage wird jetzt übermittelt.";
+      formNote.style.color = "#395746";
+    }
   });
 }
 
