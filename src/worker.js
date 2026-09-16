@@ -1,3 +1,5 @@
+import { pbkdf2Sync } from "node:crypto";
+
 const SESSION_COOKIE = "geseke_admin_session";
 const SESSION_MAX_AGE = 60 * 60 * 8;
 const MAX_BODY_BYTES = 64 * 1024;
@@ -57,7 +59,7 @@ async function routeRequest(request, env) {
     return submissionUpdates(url, env);
   }
 
-  const submissionMatch = url.pathname.match(/^\/api\/admin\/submissions\/([0-9a-f-]{36})$/i);
+  const submissionMatch = url.pathname.match(/^\/api\/admin\/submissions\/((?:[0-9a-f-]{36})|(?:[0-9a-f]{64}))$/i);
   if (submissionMatch) {
     const session = await requireSession(request, env);
     if (session instanceof Response) return session;
@@ -335,10 +337,9 @@ async function verifyPassword(password, encoded) {
   const iterations = Number(iterationsText);
   if (scheme !== "pbkdf2-sha256" || !Number.isInteger(iterations) || iterations < 100_000 || !saltText || !hashText) return false;
   try {
-    const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(password), "PBKDF2", false, ["deriveBits"]);
     const expected = fromBase64(hashText);
-    const actual = await crypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt: fromBase64(saltText), iterations }, key, expected.byteLength * 8);
-    return timingSafeEqual(new Uint8Array(actual), new Uint8Array(expected));
+    const actual = pbkdf2Sync(password, fromBase64(saltText), iterations, expected.byteLength, "sha256");
+    return timingSafeEqual(new Uint8Array(actual), expected);
   } catch { return false; }
 }
 

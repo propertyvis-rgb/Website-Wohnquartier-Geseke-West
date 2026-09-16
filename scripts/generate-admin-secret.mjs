@@ -4,7 +4,7 @@ const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%
 const random = randomBytes(24);
 const password = Array.from(random, (byte) => alphabet[byte % alphabet.length]).join("");
 const salt = randomBytes(16);
-const iterations = 210_000;
+const iterations = 100_000;
 const hash = pbkdf2Sync(password, salt, iterations, 32, "sha256");
 
 console.log("Initial admin password (share securely, then discard this output):");

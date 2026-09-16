@@ -141,7 +141,7 @@ test("initial sequence boundary cannot miss a submission arriving during loading
   assert.equal(testables.decodeSyncCursor(updates.cursor), 2);
 });
 
-test("PBKDF2 verifier accepts only the correct password", async () => {
+test("node:crypto PBKDF2 verifier accepts a generated hash only for the correct password", async () => {
   const password = "local-test-password";
   const salt = randomBytes(16);
   const iterations = 100_000;
