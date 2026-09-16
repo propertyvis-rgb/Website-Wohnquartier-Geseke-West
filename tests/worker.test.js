@@ -100,6 +100,12 @@ test("maps the repository's exact German fields", () => {
   assert.equal(lead.extraFields.Zusatzfeld, "Zusatzwert");
 });
 
+test("extracts FormSubmit's production JSON-string form_data payload", () => {
+  const payload = { form_data: JSON.stringify(validForm) };
+  assert.deepEqual(testables.extractWebhookFormData(payload), validForm);
+  assert.deepEqual(testables.extractWebhookFormData({ form_data: validForm }), validForm);
+});
+
 test("rejects incomplete or invalid lead data", () => {
   assert.equal(testables.normalizeLead({ ...validForm, "E-Mail": "invalid" }), null);
   assert.equal(testables.normalizeLead({ ...validForm, Nachricht: "" }), null);

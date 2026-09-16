@@ -89,7 +89,7 @@ async function receiveWebhook(request, env) {
     return json({ error: "Ungültiger Payload." }, 400);
   }
 
-  const formData = payload?.form_data && typeof payload.form_data === "object" ? payload.form_data : payload;
+  const formData = extractWebhookFormData(payload);
   const lead = normalizeLead(formData);
   if (!lead) return json({ error: "Erforderliche Felder fehlen." }, 422);
 
@@ -307,6 +307,20 @@ function parseWebhookBody(text, contentType) {
   return JSON.parse(text);
 }
 
+function extractWebhookFormData(payload) {
+  if (!payload || typeof payload !== "object" || Array.isArray(payload)) return payload;
+  if (payload.form_data && typeof payload.form_data === "object" && !Array.isArray(payload.form_data)) {
+    return payload.form_data;
+  }
+  if (typeof payload.form_data === "string") {
+    try {
+      const parsed = JSON.parse(payload.form_data);
+      if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) return parsed;
+    } catch { /* normalizeLead will reject the outer payload below. */ }
+  }
+  return payload;
+}
+
 async function recordLoginAttempt(identifier, env) {
   const now = new Date();
   const existing = await env.LEADS_DB.prepare(
@@ -464,5 +478,5 @@ function json(data, status = 200, extraHeaders = {}) {
 export const testables = {
   normalizeLead, sanitizePayload, stableStringify, encodeCursor, decodeCursor,
   encodeSyncCursor, decodeSyncCursor, verifyPassword, parseWebhookBody, readCookie,
-  listSubmissions, submissionUpdates,
+  extractWebhookFormData, listSubmissions, submissionUpdates,
 };
