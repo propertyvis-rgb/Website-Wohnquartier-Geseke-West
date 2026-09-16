@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Anfragen | Wohnquartier Geseke West</title>
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+  <main class="admin-shell">
+    <section class="login-panel" data-login-panel hidden>
+      <div class="brand-mark" aria-hidden="true">WG</div>
+      <p class="eyebrow">Wohnquartier Geseke West</p>
+      <h1>Anfragen</h1>
+      <p class="muted">Melden Sie sich an, um die eingegangenen Anfragen zu sehen.</p>
+      <form data-login-form>
+        <label for="password">Passwort</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+        <button type="submit">Anmelden</button>
+        <p class="form-error" data-login-error role="alert"></p>
+      </form>
+    </section>
+
+    <section class="inbox" data-inbox hidden>
+      <header class="inbox-header">
+        <div>
+          <p class="eyebrow">Wohnquartier Geseke West</p>
+          <h1>Anfragen <span class="new-count" data-new-count hidden></span></h1>
+        </div>
+        <button class="text-button" type="button" data-logout>Abmelden</button>
+      </header>
+
+      <form class="filters" data-filters>
+        <label class="search-field">
+          <span>Suche</span>
+          <input type="search" name="q" placeholder="Name, E-Mail, Nachricht">
+        </label>
+        <label><span>Status</span><select name="status"><option value="all">Alle</option><option value="new">Neu</option><option value="processed">Bearbeitet</option></select></label>
+        <label><span>Von</span><input type="date" name="from"></label>
+        <label><span>Bis</span><input type="date" name="to"></label>
+        <button type="submit">Filtern</button>
+      </form>
+
+      <p class="connection-note" data-connection-note>Neue Anfragen erscheinen automatisch.</p>
+      <div class="lead-list" data-lead-list aria-live="polite"></div>
+      <div class="empty-state" data-empty hidden>Noch keine Anfragen für diese Auswahl.</div>
+      <button class="load-more" type="button" data-load-more hidden>Weitere laden</button>
+    </section>
+  </main>
+
+  <dialog class="lead-dialog" data-dialog>
+    <article>
+      <header>
+        <div><p class="eyebrow">Anfragedetails</p><h2 data-detail-name></h2></div>
+        <button class="icon-button" type="button" data-dialog-close aria-label="Schließen">×</button>
+      </header>
+      <dl data-detail-list></dl>
+      <div class="dialog-actions">
+        <button type="button" data-status-toggle></button>
+        <button class="danger" type="button" data-delete>Diese Anfrage löschen</button>
+      </div>
+    </article>
+  </dialog>
+  <script src="/admin/admin.js" defer></script>
+</body>
+</html>

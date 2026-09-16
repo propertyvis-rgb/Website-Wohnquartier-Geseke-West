@@ -1,0 +1,13 @@
+{
+  "name": "wohnquartier-geseke-west",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check src/worker.js && node --check admin/admin.js && node --check script.js",
+    "generate-admin-secret": "node scripts/generate-admin-secret.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "4.131.2"
+  }
+}

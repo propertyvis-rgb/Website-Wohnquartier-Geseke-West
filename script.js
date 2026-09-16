@@ -31,7 +31,14 @@ if (menuToggle && header) {
 }
 
 if (leadForm && formNote) {
+  const pageField = leadForm.querySelector("[data-form-page]");
+  const webhookField = leadForm.querySelector("[data-webhook-url]");
+
+  if (pageField) pageField.value = window.location.href;
+  if (webhookField) webhookField.value = new URL(webhookField.value, window.location.origin).href;
+
   leadForm.addEventListener("submit", (event) => {
+    if (pageField) pageField.value = window.location.href;
     if (!leadForm.checkValidity()) {
       event.preventDefault();
       formNote.textContent = "Bitte füllen Sie die Pflichtfelder aus.";
